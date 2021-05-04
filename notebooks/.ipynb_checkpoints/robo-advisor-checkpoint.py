@@ -5,8 +5,7 @@ import streamlit as st
 from pickle import load
 from PIL import Image
 import yfinance as yf
-
-st.set_page_config(layout="centered")
+st.set_page_config(layout="wide")
 
 st.title('Robo-advisor')
 
@@ -140,8 +139,6 @@ if st.button('Descubra su perfil de inversor'):
         st.write('Su perfil de inversor es moderado')
 
 
-st.text("")
-st.text("")
 st.write('# Paso 2:')
 graficos_acciones = st.selectbox(
     'Selecciona el tipo de inversor que eres para ver en qué activos invertir',
@@ -171,9 +168,7 @@ if graficos_acciones == 'Inversor conservador':
 
     np.load('stocks_conservadores.npy', allow_pickle=True)
 
-    st.write('# Large & mid caps cluster inversor conservador')
-    st.text("")
-    st.text("")
+    st.write('Large & mid caps cluster inversor conservador')
     df_con = df[df.Symbol.isin(
         ['ABT', 'ACN', 'AFL', 'APD', 'ARE', 'ALLE', 'LNT', 'ALL', 'AEE', 'AEP', 'AXP', 'AMT', 'AWK', 'AME', 'AMGN',
          'APH', 'AON', 'AIV', 'ADM', 'AJG',
@@ -190,47 +185,21 @@ if graficos_acciones == 'Inversor conservador':
          'UDR', 'USB', 'UTX', 'VTR', 'VRSK', 'VZ', 'WMT', 'DIS', 'WM', 'WEC', 'WELL', 'WU', 'WLTW', 'XEL', 'XYL', 'YUM',
          'ZBH'])]
     df_con = df_con.drop(labels=['SEC filings', 'Headquarters Location', 'Date first added', 'CIK'], axis=1)
-    df_con.rename(columns={'Symbol': 'Ticker', 'Security': 'Company', 'GICS Sector': 'Sector',
-                           'GICS Sub-Industry': 'Sub-Industry'}, inplace=True)
     df_con = df_con.reset_index(drop=True)
     st.write(df_con)
 
     image = Image.open('Stocks conservadores.jpg')
     st.image(image, caption='Evolución portafolio compuesto por una acción de cada empresa del cluster conservador')
 
-    st.write('# ¿Por qué SP500 ETF?')
     st.write('SP500 ETF - Ticker VOO')
     tickerData1 = yf.Ticker('VOO')
     tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-2')
     st.line_chart(tickerDf1.Close)
 
-    st.write('1. Exposición a las 500 empresas más grandes de los EE.UU.')
-    st.write('2. El objetivo es seguir de cerca el rendimiento del índice S&P 500.')
-    st.write('3. Hágalo parte fundamental de su cartera para diversificarse en el mercado estadounidense y buscar '
-             'crecimiento a largo plazo.')
-    st.write('4. Con un rendimiento anual medio del 15.74% desde el año de lanzamiento.')
-
-    st.write('# ¿Por qué International market ETF?')
     st.write('International market ETF - Ticker IEFA')
     tickerData2 = yf.Ticker('IEFA')
     tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-2')
     st.line_chart(tickerDf2.Close)
-
-    st.write('1. Exposición a un amplio rango de empresas de Europa, Australia y Asia.')
-    st.write('2. Acceso completo y de bajo costo a valores de renta variable de alta, mediana y baja capitalización de '
-             'mercados desarrollados.')
-    st.write('3. Hágalo parte fundamental de su cartera para diversificarse internacionalmente y buscar crecimiento a '
-             'largo plazo.')
-    st.write('4. Con un rendimiento anual medio del 7.56% desde el año de lanzamiento.')
-
-    st.write('# ¿Por qué Bonos?')
-    st.write('Rentabilidad bono Estados Unidos a 10 años')
-    tickerData4 = yf.Ticker('^TNX')
-    tickerDf4 = tickerData4.history(period='1d', start='2011-1-1', end='2021-5-2')
-    st.line_chart(tickerDf4.Close)
-
-    st.write('1. Inversión segura, activo que proporciona estabilidad y ofrece un flujo de ingresos predecible.')
-    st.write('2. Diversifica y reduce la volatilidad del portafolio.')
 
 elif graficos_acciones == 'Inversor moderado':
 
@@ -245,9 +214,7 @@ elif graficos_acciones == 'Inversor moderado':
 
     np.load('stocks_moderados.npy', allow_pickle=True)
 
-    st.write('# Large & mid caps cluster inversor moderado')
-    st.text("")
-    st.text("")
+    st.write('Large & mid caps cluster inversor moderado')
     df_mod = df[df.Symbol.isin(
         ['ADBE', 'AAP', 'AES', 'A', 'AKAM', 'GOOGL', 'GOOG', 'AMZN', 'ADI', 'ANSS', 'AAPL', 'AZO', 'BLL', 'BA', 'BSX',
          'BR', 'CDNS', 'KMX',
@@ -260,54 +227,28 @@ elif graficos_acciones == 'Inversor moderado':
          'SBUX', 'SNPS', 'TGT', 'TFX', 'TXN', 'TMO', 'TJX', 'TSCO', 'TDG', 'UNP', 'UAL', 'UHS', 'VFC', 'VRSN', 'V',
          'WCG', 'ZTS'])]
     df_mod = df_mod.drop(labels=['SEC filings', 'Headquarters Location', 'Date first added', 'CIK'], axis=1)
-    df_mod.rename(columns={'Symbol': 'Ticker', 'Security': 'Company', 'GICS Sector': 'Sector',
-                           'GICS Sub-Industry': 'Sub-Industry'}, inplace=True)
     df_mod = df_mod.reset_index(drop=True)
     st.write(df_mod)
 
     image = Image.open('Stocks moderados.jpg')
     st.image(image, caption='Evolución portafolio compuesto por una acción de cada empresa del cluster moderado')
 
-    st.write('# ¿Por qué SP500 ETF?')
     st.write('SP500 ETF - Ticker VOO')
     tickerData1 = yf.Ticker('VOO')
     tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-2')
     st.line_chart(tickerDf1.Close)
 
-    st.write('1. Exposición a las 500 empresas más grandes de los EE.UU.')
-    st.write('2. El objetivo es seguir de cerca el rendimiento del índice S&P 500.')
-    st.write('3. Hágalo parte fundamental de su cartera para diversificarse en el mercado estadounidense y buscar '
-             'crecimiento a largo plazo.')
-    st.write('4. Con un rendimiento anual medio del 15.74% desde el año de lanzamiento.')
-
-    st.write('# ¿Por qué International market ETF?')
     st.write('International market ETF - Ticker IEFA')
     tickerData2 = yf.Ticker('IEFA')
     tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-2')
     st.line_chart(tickerDf2.Close)
-
-    st.write('1. Exposición a un amplio rango de empresas de Europa, Australia y Asia.')
-    st.write('2. Acceso completo y de bajo costo a valores de renta variable de alta, mediana y baja capitalización de '
-             'mercados desarrollados.')
-    st.write('3. Hágalo parte fundamental de su cartera para diversificarse internacionalmente y buscar crecimiento a '
-             'largo plazo.')
-    st.write('4. Con un rendimiento anual medio del 7.56% desde el año de lanzamiento.')
-
-    st.write('# ¿Por qué Bonos?')
-    st.write('Rentabilidad bono Estados Unidos a 10 años')
-    tickerData4 = yf.Ticker('^TNX')
-    tickerDf4 = tickerData4.history(period='1d', start='2011-1-1', end='2021-5-2')
-    st.line_chart(tickerDf4.Close)
-
-    st.write('1. Inversión segura, activo que proporciona estabilidad y ofrece un flujo de ingresos predecible.')
-    st.write('2. Diversifica y reduce la volatilidad del portafolio.')
 
 else:
 
     st.write('Portafolio inversor agresivo')
     labels = 'SP500 ETF', 'International ETF', 'Bonos', 'Cash', 'Large & mid caps', 'Bitcoin'
     colors = ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99', '#99ffff', '#cca37a']
-    sizes = [20, 15, 15, 5, 35, 10]
+    sizes = [30, 15, 15, 5, 25, 10]
     fig3, ax3 = plt.subplots()
     ax3.pie(sizes, colors=colors, labels=labels, autopct='%1.1f%%', startangle=90)
     ax3.axis('equal')
@@ -315,69 +256,29 @@ else:
 
     np.load('stocks_agresivos.npy', allow_pickle=True)
 
-    st.write('# Large & mid caps cluster inversor agresivo')
-    st.text("")
-    st.text("")
+    st.write('Large & mid caps cluster inversor agresivo')
     df_agr = df[df.Symbol.isin(
         ['ABMD', 'AMD', 'ALGN', 'ANET', 'ADSK', 'CMG', 'HES', 'ILMN', 'LRCX', 'MU', 'NFLX', 'NVDA', 'QRVO', 'STX',
          'SYMC', 'TTWO',
          'TWTR', 'TRIP', 'ULTA', 'UAA', 'UA', 'XLNX'])]
     df_agr = df_agr.drop(['SEC filings', 'Headquarters Location', 'Date first added', 'CIK'], axis=1)
-    df_agr.rename(columns={'Symbol': 'Ticker', 'Security': 'Company', 'GICS Sector': 'Sector',
-                           'GICS Sub-Industry': 'Sub-Industry'}, inplace=True)
     df_agr = df_agr.reset_index(drop=True)
     st.write(df_agr)
 
     image = Image.open('Stocks agresivos.jpg')
     st.image(image, caption='Evolución portafolio compuesto por una acción de cada empresa del cluster agresivo')
 
-    st.write('# ¿Por qué SP500 ETF?')
     st.write('SP500 ETF - Ticker VOO')
     tickerData1 = yf.Ticker('VOO')
     tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-2')
     st.line_chart(tickerDf1.Close)
 
-    st.write('1. Exposición a las 500 empresas más grandes de los EE.UU.')
-    st.write('2. El objetivo es seguir de cerca el rendimiento del índice S&P 500.')
-    st.write('3. Hágalo parte fundamental de su cartera para diversificarse en el mercado estadounidense y buscar '
-             'crecimiento a largo plazo.')
-    st.write('4. Con un rendimiento anual medio del 15.74% desde el año de lanzamiento.')
-
-    st.write('# ¿Por qué International market ETF?')
     st.write('International market ETF - Ticker IEFA')
     tickerData2 = yf.Ticker('IEFA')
     tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-2')
     st.line_chart(tickerDf2.Close)
 
-    st.write('1. Exposición a un amplio rango de empresas de Europa, Australia y Asia.')
-    st.write('2. Acceso completo y de bajo costo a valores de renta variable de alta, mediana y baja capitalización de '
-             'mercados desarrollados.')
-    st.write('3. Hágalo parte fundamental de su cartera para diversificarse internacionalmente y buscar crecimiento a '
-             'largo plazo.')
-    st.write('4. Con un rendimiento anual medio del 7.56% desde el año de lanzamiento.')
-
-    st.write('# ¿Por qué Bonos?')
-    st.write('Rentabilidad bono Estados Unidos a 10 años')
-    tickerData4 = yf.Ticker('^TNX')
-    tickerDf4 = tickerData4.history(period='1d', start='2011-1-1', end='2021-5-2')
-    st.line_chart(tickerDf4.Close)
-
-    st.write('1. Inversión segura, activo que proporciona estabilidad y ofrece un flujo de ingresos predecible.')
-    st.write('2. Diversifica y reduce la volatilidad del portafolio.')
-
-    st.write('# ¿Por qué BTC?')
     st.write('Bitcoin - Ticker BTC')
     tickerData3 = yf.Ticker('BTC-USD')
     tickerDf3 = tickerData3.history(period='1d', start='2017-1-1', end='2021-5-2')
     st.line_chart(tickerDf3.Close)
-
-    image1 = Image.open('newplot.png')
-    st.image(image1, caption='Sharpe Ratio (ROI / Volatilidad) de diferentes activos')
-
-    image2 = Image.open('newplot (1).png')
-    st.image(image2, caption='Volatilidad Bitcoin vs otros activos')
-
-    st.write('1. Diversificación, exposición al mercado de las criptomonedas.')
-    st.write('2. Alta rentabilidad, con una mayor adopción cada año y con una alta volatilidad pero descendente.')
-    st.write('3. Activo deflacionario contra el sistema monetario inflacionario actual, el 24% del total de dólares se '
-             'creó en 2020.')
