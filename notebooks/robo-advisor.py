@@ -160,7 +160,7 @@ df = load_data()
 
 if graficos_acciones == 'Inversor conservador':
 
-    st.write('Portafolio inversor conservador')
+    st.write('# Portafolio inversor conservador')
     labels = 'SP500 ETF', 'International market ETF', 'Bonos', 'Cash', 'Large & mid caps'
     colors = ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99', '#99ffff']
     sizes = [20, 10, 40, 20, 10]
@@ -205,7 +205,7 @@ if graficos_acciones == 'Inversor conservador':
     st.line_chart(tickerDf1.Close)
 
     st.write('1. Exposición a las 500 empresas más grandes de los EE.UU.')
-    st.write('2. El objetivo es seguir de cerca el rendimiento del índice S&P 500.')
+    st.write('2. El objetivo es replicar el rendimiento del índice S&P 500.')
     st.write('3. Hágalo parte fundamental de su cartera para diversificarse en el mercado estadounidense y buscar '
              'crecimiento a largo plazo.')
     st.write('4. Con un rendimiento anual medio del 15.74% desde el año de lanzamiento.')
@@ -234,7 +234,7 @@ if graficos_acciones == 'Inversor conservador':
 
 elif graficos_acciones == 'Inversor moderado':
 
-    st.write('Portafolio inversor moderado')
+    st.write('# Portafolio inversor moderado')
     labels = 'SP500 ETF', 'International ETF', 'Bonos', 'Cash', 'Large & mid caps'
     colors = ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99', '#99ffff']
     sizes = [30, 15, 25, 10, 20]
@@ -275,7 +275,7 @@ elif graficos_acciones == 'Inversor moderado':
     st.line_chart(tickerDf1.Close)
 
     st.write('1. Exposición a las 500 empresas más grandes de los EE.UU.')
-    st.write('2. El objetivo es seguir de cerca el rendimiento del índice S&P 500.')
+    st.write('2. El objetivo es replicar el rendimiento del índice S&P 500.')
     st.write('3. Hágalo parte fundamental de su cartera para diversificarse en el mercado estadounidense y buscar '
              'crecimiento a largo plazo.')
     st.write('4. Con un rendimiento anual medio del 15.74% desde el año de lanzamiento.')
@@ -304,7 +304,7 @@ elif graficos_acciones == 'Inversor moderado':
 
 else:
 
-    st.write('Portafolio inversor agresivo')
+    st.write('# Portafolio inversor agresivo')
     labels = 'SP500 ETF', 'International ETF', 'Bonos', 'Cash', 'Large & mid caps', 'Bitcoin'
     colors = ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99', '#99ffff', '#cca37a']
     sizes = [20, 15, 15, 5, 35, 10]
@@ -338,7 +338,7 @@ else:
     st.line_chart(tickerDf1.Close)
 
     st.write('1. Exposición a las 500 empresas más grandes de los EE.UU.')
-    st.write('2. El objetivo es seguir de cerca el rendimiento del índice S&P 500.')
+    st.write('2. El objetivo es replicar el rendimiento del índice S&P 500.')
     st.write('3. Hágalo parte fundamental de su cartera para diversificarse en el mercado estadounidense y buscar '
              'crecimiento a largo plazo.')
     st.write('4. Con un rendimiento anual medio del 15.74% desde el año de lanzamiento.')
@@ -379,5 +379,5 @@ else:
 
     st.write('1. Diversificación, exposición al mercado de las criptomonedas.')
     st.write('2. Alta rentabilidad, con una mayor adopción cada año y con una alta volatilidad pero descendente.')
-    st.write('3. Activo deflacionario contra el sistema monetario inflacionario actual, el 24% del total de dólares se '
-             'creó en 2020.')
+    st.write('3. Activo deflacionario contra el sistema monetario inflacionario actual, el 24% del total de dólares en '
+             'circulación se crearon en 2020.')
