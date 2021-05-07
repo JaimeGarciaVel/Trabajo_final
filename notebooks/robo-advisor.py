@@ -213,7 +213,6 @@ if graficos_acciones == 'Inversor conservador':
     st.write('4. Con un rendimiento anual medio del 15.74% desde el año de lanzamiento.')
 
     st.write('# ¿Por qué International market ETF?')
-    st.text("")
     st.write('International market ETF - Ticker IEFA')
     tickerData2 = yf.Ticker('IEFA')
     tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-2')
@@ -285,7 +284,6 @@ elif graficos_acciones == 'Inversor moderado':
     st.write('4. Con un rendimiento anual medio del 15.74% desde el año de lanzamiento.')
 
     st.write('# ¿Por qué International market ETF?')
-    st.text("")
     st.write('International market ETF - Ticker IEFA')
     tickerData2 = yf.Ticker('IEFA')
     tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-2')
@@ -350,7 +348,6 @@ else:
     st.write('4. Con un rendimiento anual medio del 15.74% desde el año de lanzamiento.')
 
     st.write('# ¿Por qué International market ETF?')
-    st.text("")
     st.write('International market ETF - Ticker IEFA')
     tickerData2 = yf.Ticker('IEFA')
     tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-2')
