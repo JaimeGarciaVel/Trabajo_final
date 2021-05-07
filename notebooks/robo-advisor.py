@@ -161,6 +161,7 @@ df = load_data()
 if graficos_acciones == 'Inversor conservador':
 
     st.write('# Portafolio inversor conservador')
+    st.text("")
     labels = 'SP500 ETF', 'International market ETF', 'Bonos', 'Cash', 'Large & mid caps'
     colors = ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99', '#99ffff']
     sizes = [20, 10, 40, 20, 10]
@@ -172,6 +173,7 @@ if graficos_acciones == 'Inversor conservador':
     np.load('stocks_conservadores.npy', allow_pickle=True)
 
     st.write('# Large & mid caps cluster inversor conservador')
+    st.text("")
     st.text("")
     st.text("")
     df_con = df[df.Symbol.isin(
@@ -211,6 +213,7 @@ if graficos_acciones == 'Inversor conservador':
     st.write('4. Con un rendimiento anual medio del 15.74% desde el año de lanzamiento.')
 
     st.write('# ¿Por qué International market ETF?')
+    st.text("")
     st.write('International market ETF - Ticker IEFA')
     tickerData2 = yf.Ticker('IEFA')
     tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-2')
@@ -235,6 +238,7 @@ if graficos_acciones == 'Inversor conservador':
 elif graficos_acciones == 'Inversor moderado':
 
     st.write('# Portafolio inversor moderado')
+    st.text("")
     labels = 'SP500 ETF', 'International ETF', 'Bonos', 'Cash', 'Large & mid caps'
     colors = ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99', '#99ffff']
     sizes = [30, 15, 25, 10, 20]
@@ -281,6 +285,7 @@ elif graficos_acciones == 'Inversor moderado':
     st.write('4. Con un rendimiento anual medio del 15.74% desde el año de lanzamiento.')
 
     st.write('# ¿Por qué International market ETF?')
+    st.text("")
     st.write('International market ETF - Ticker IEFA')
     tickerData2 = yf.Ticker('IEFA')
     tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-2')
@@ -305,6 +310,7 @@ elif graficos_acciones == 'Inversor moderado':
 else:
 
     st.write('# Portafolio inversor agresivo')
+    st.text("")
     labels = 'SP500 ETF', 'International ETF', 'Bonos', 'Cash', 'Large & mid caps', 'Bitcoin'
     colors = ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99', '#99ffff', '#cca37a']
     sizes = [20, 15, 15, 5, 35, 10]
@@ -344,6 +350,7 @@ else:
     st.write('4. Con un rendimiento anual medio del 15.74% desde el año de lanzamiento.')
 
     st.write('# ¿Por qué International market ETF?')
+    st.text("")
     st.write('International market ETF - Ticker IEFA')
     tickerData2 = yf.Ticker('IEFA')
     tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-2')
