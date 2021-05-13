@@ -172,11 +172,11 @@ if graficos_acciones == 'Inversor conservador':
     outer_colors = cmap(np.arange(3) * 4)
     inner_colors = cmap([1, 2, 5, 6, 9, 10])
     labels = 'Bonds', 'Stock market', 'Commodities'
-    labels2 = 'US Bond intermediate-term (IEI)', 'US Bond long-term (TLT)', '30% US large cap (VTI)', '',\
+    labels2 = '15% US Bond intermediate-term (IEI)', '40% US Bond long-term (TLT)', '30% US large cap (VTI)', '',\
               '7,5% Gold (GLD)', '7,5% Other commodities (GSG)'
 
-    ax1.pie(vals.sum(axis=1), radius=1 - size, labels=labels, colors=outer_colors, wedgeprops=dict(width=size,
-                                                                                                   edgecolor='w'))
+    ax1.pie(vals.sum(axis=1), radius=1 - size, labels=labels, colors=outer_colors, labeldistance=0.65,
+            wedgeprops=dict(width=size, edgecolor='w'))
 
     ax1.pie(vals.flatten(), radius=1, labels=labels2, colors=inner_colors, wedgeprops=dict(width=size, edgecolor='w'))
 
@@ -252,12 +252,24 @@ elif graficos_acciones == 'Inversor moderado':
 
     st.write('# Portafolio inversor moderado')
     st.text("")
-    labels = 'SP500 ETF', 'International ETF', 'Bonos', 'Cash', 'Large & mid caps'
-    colors = ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99', '#99ffff']
-    sizes = [30, 15, 25, 10, 20]
-    fig2, ax2 = plt.subplots()
-    ax2.pie(sizes, colors=colors, labels=labels, autopct='%1.1f%%', startangle=90)
-    ax2.axis('equal')
+    fig2, ax2 = plt.subplots(figsize=(10, 6))
+
+    size = 0.3
+    vals = np.array([[10, 25, 0], [10, 30, 15], [5, 5, 0]])
+
+    a, b, c = [plt.cm.Blues, plt.cm.Reds, plt.cm.Greens]
+    outer_colors = [a(0.6), b(0.6), c(0.6)]
+    inner_colors = [a(0.5), a(0.4), a(0.3), b(0.5), b(0.4), b(0.3), c(0.5), c(0.4)]
+    labels = 'Bonds', 'Stock market', 'Commodities'
+    labels2 = '10% US Bond intermediate-term (IEI)', '25% US Bond long-term (TLT)', '', '10% Real Estate (VNQ)', '30% US large cap (VTI)', '15% International large cap (VEU)', '5% Gold (GLD)', '5% Other commodities (GSG)', ''
+
+    ax2.pie(vals.sum(axis=1), radius=1 - size, labels=labels, colors=outer_colors, labeldistance=0.65,
+           wedgeprops=dict(width=size, edgecolor='w'))
+
+    ax2.pie(vals.flatten(), radius=1, labels=labels2, colors=inner_colors,
+           wedgeprops=dict(width=size, edgecolor='w'))
+
+    ax2.set(aspect="equal")
     st.pyplot(fig2)
 
     np.load('stocks_moderados.npy', allow_pickle=True)
