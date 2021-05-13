@@ -184,35 +184,12 @@ if graficos_acciones == 'Inversor conservador':
 
     st.pyplot(fig1)
 
-    np.load('stocks_conservadores.npy', allow_pickle=True)
+    st.write('# Rendimiento portfolio')
 
-    st.write('# Large & mid caps cluster inversor conservador')
-    st.text("")
-    st.text("")
-    st.text("")
-    df_con = df[df.Symbol.isin(
-        ['ABT', 'ACN', 'AFL', 'APD', 'ARE', 'ALLE', 'LNT', 'ALL', 'AEE', 'AEP', 'AXP', 'AMT', 'AWK', 'AME', 'AMGN',
-         'APH', 'AON', 'AIV', 'ADM', 'AJG',
-         'AIZ', 'ATO', 'ADP', 'AVB', 'BAX', 'BBT', 'BDX', 'BXP', 'CBRE', 'CNP', 'CB', 'CINF', 'CTXS', 'CME', 'CMS',
-         'KO', 'CMCSA', 'ED', 'COST', 'CCI',
-         'DHR', 'DRI', 'DLR', 'D', 'DOV', 'DTE', 'DUK', 'DRE', 'ECL', 'ETR', 'EFX', 'EQIX', 'EQR', 'ESS', 'EVRG', 'ES',
-         'RE', 'EXC', 'EXPD', 'EXR', 'FRT',
-         'FIS', 'FE', 'FRC', 'GPC', 'GL', 'HIG', 'HCP', 'HSIC', 'HSY', 'HLT', 'HOLX', 'HD', 'HON', 'HRL', 'IEX', 'INFO',
-         'IR', 'ICE', 'JKHY', 'JCI', 'JPM',
-         'KMB', 'KIM', 'KMI', 'LDOS', 'LLY', 'LIN', 'LMT', 'L', 'MMC', 'MCD', 'MDT', 'MRK', 'MAA', 'MDLZ', 'NDAQ',
-         'NEE', 'NI', 'OKE', 'ORCL', 'PAYX', 'PEP',
-         'PFE', 'PNW', 'PPL', 'PG', 'PLD', 'PEG', 'PSA', 'DGX', 'RTN', 'O', 'REG', 'RSG', 'ROL', 'ROP', 'SBAC', 'SRE',
-         'SHW', 'SO', 'SYK', 'SYY', 'TMUS', 'TRV',
-         'UDR', 'USB', 'UTX', 'VTR', 'VRSK', 'VZ', 'WMT', 'DIS', 'WM', 'WEC', 'WELL', 'WU', 'WLTW', 'XEL', 'XYL', 'YUM',
-         'ZBH'])]
-    df_con = df_con.drop(labels=['SEC filings', 'Headquarters Location', 'Date first added', 'CIK'], axis=1)
-    df_con.rename(columns={'Symbol': 'Ticker', 'Security': 'Company', 'GICS Sector': 'Sector',
-                           'GICS Sub-Industry': 'Sub-Industry'}, inplace=True)
-    df_con = df_con.reset_index(drop=True)
-    st.write(df_con)
-
-    image = Image.open('Stocks conservadores.jpg')
-    st.image(image, caption='Evolución portafolio compuesto por una acción de cada empresa del cluster conservador')
+    cons = np.load('portfolio_conservador.npy', allow_pickle=True)
+    fig2, ax2 = plt.subplots(figsize=(10, 6))
+    ax2.plot(a)
+    st.pyplot(fig2)
 
     st.write('# ¿Por qué Stock market?')
     st.write('➤Total stock market ETF - Ticker VTI')
@@ -269,6 +246,37 @@ if graficos_acciones == 'Inversor conservador':
     st.write('2. Acceso a mercados de energía, metales industriales y preciosos, agricultura y ganadería.')
     st.write('3. Diversifica el portafolio.')
     st.write('3. Buena actuación en épocas de crecimiento económico y/o alta inflación.')
+
+
+    np.load('stocks_conservadores.npy', allow_pickle=True)
+
+    st.write('# Large & mid caps cluster inversor conservador')
+    st.text("")
+    st.text("")
+    st.text("")
+    df_con = df[df.Symbol.isin(
+        ['ABT', 'ACN', 'AFL', 'APD', 'ARE', 'ALLE', 'LNT', 'ALL', 'AEE', 'AEP', 'AXP', 'AMT', 'AWK', 'AME', 'AMGN',
+         'APH', 'AON', 'AIV', 'ADM', 'AJG',
+         'AIZ', 'ATO', 'ADP', 'AVB', 'BAX', 'BBT', 'BDX', 'BXP', 'CBRE', 'CNP', 'CB', 'CINF', 'CTXS', 'CME', 'CMS',
+         'KO', 'CMCSA', 'ED', 'COST', 'CCI',
+         'DHR', 'DRI', 'DLR', 'D', 'DOV', 'DTE', 'DUK', 'DRE', 'ECL', 'ETR', 'EFX', 'EQIX', 'EQR', 'ESS', 'EVRG', 'ES',
+         'RE', 'EXC', 'EXPD', 'EXR', 'FRT',
+         'FIS', 'FE', 'FRC', 'GPC', 'GL', 'HIG', 'HCP', 'HSIC', 'HSY', 'HLT', 'HOLX', 'HD', 'HON', 'HRL', 'IEX', 'INFO',
+         'IR', 'ICE', 'JKHY', 'JCI', 'JPM',
+         'KMB', 'KIM', 'KMI', 'LDOS', 'LLY', 'LIN', 'LMT', 'L', 'MMC', 'MCD', 'MDT', 'MRK', 'MAA', 'MDLZ', 'NDAQ',
+         'NEE', 'NI', 'OKE', 'ORCL', 'PAYX', 'PEP',
+         'PFE', 'PNW', 'PPL', 'PG', 'PLD', 'PEG', 'PSA', 'DGX', 'RTN', 'O', 'REG', 'RSG', 'ROL', 'ROP', 'SBAC', 'SRE',
+         'SHW', 'SO', 'SYK', 'SYY', 'TMUS', 'TRV',
+         'UDR', 'USB', 'UTX', 'VTR', 'VRSK', 'VZ', 'WMT', 'DIS', 'WM', 'WEC', 'WELL', 'WU', 'WLTW', 'XEL', 'XYL', 'YUM',
+         'ZBH'])]
+    df_con = df_con.drop(labels=['SEC filings', 'Headquarters Location', 'Date first added', 'CIK'], axis=1)
+    df_con.rename(columns={'Symbol': 'Ticker', 'Security': 'Company', 'GICS Sector': 'Sector',
+                           'GICS Sub-Industry': 'Sub-Industry'}, inplace=True)
+    df_con = df_con.reset_index(drop=True)
+    st.write(df_con)
+
+    image = Image.open('Stocks conservadores.jpg')
+    st.image(image, caption='Evolución portafolio compuesto por una acción de cada empresa del cluster conservador')
 
 elif graficos_acciones == 'Inversor moderado':
 
