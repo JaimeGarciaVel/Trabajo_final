@@ -439,7 +439,7 @@ else:
     labels = 'Bonds', 'Stock market', 'Commodities'
     labels2 = '10% US Bond intermediate-term (IEI)', '25% US Bond long-term (TLT)', '', '', '10% Real Estate (VNQ)', \
               '35% US large cap (VTI)', '15% International large cap (VEU)', '10% US small cap (IJT)', \
-              '5% Gold (GLD)', '5% Other commodities (GSG)', '', '', '5% Bitcoin (BTC)', '', '', ''
+              '5% Gold (GLD)', '5% Other commodities (GSG)', '', ''
 
     ax3.pie(vals.sum(axis=1), radius=1 - size, labels=labels, colors=outer_colors, labeldistance=0.65,
             wedgeprops=dict(width=size, edgecolor='w'))
