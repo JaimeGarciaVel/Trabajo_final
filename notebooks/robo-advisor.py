@@ -340,15 +340,16 @@ else:
     fig3, ax3 = plt.subplots(figsize=(10, 6))
 
     size = 0.3
-    vals = np.array([[5, 15, 0, 0, 0], [10, 35, 15, 5, 5], [5, 5, 0, 0, 0]])
+    vals = np.array([[5, 15, 0, 0], [10, 35, 15, 5], [5, 5, 0, 0], [5, 0, 0, 0]])
 
-    a, b, c = [plt.cm.Blues, plt.cm.Reds, plt.cm.Greens]
-    outer_colors = [a(0.6), b(0.6), c(0.6)]
-    inner_colors = [a(0.5), a(0.4), a(0.3), a(0.2), a(0.1), b(0.5), b(0.4), b(0.3), b(0.2), b(0.1), c(0.5), c(0.4)]
+    a, b, c, d= [plt.cm.Blues, plt.cm.Reds, plt.cm.Greens, plt.cm.Yellows]
+    outer_colors = [a(0.6), b(0.6), c(0.6), d(0.6)]
+    inner_colors = [a(0.5), a(0.4), a(0.3), a(0.2), b(0.5), b(0.4), b(0.3), b(0.2), c(0.5), c(0.4), c(0.3), c(0.2),
+                    d(0.5)]
     labels = 'Bonds', 'Stock market', 'Commodities'
-    labels2 = '10% US Bond intermediate-term (IEI)', '25% US Bond long-term (TLT)', '', '', '', '10% Real Estate (VNQ)'\
+    labels2 = '10% US Bond intermediate-term (IEI)', '25% US Bond long-term (TLT)', '', '', '10% Real Estate (VNQ)'\
         , '35% US large cap (VTI)', '15% International large cap (VEU)', '5% Emerging markets large cap (EEM)'\
-        , '5% Bitcoin (BTC)', '5% Gold (GLD)', '5% Other commodities (GSG)', '', '', ''
+        , '5% Gold (GLD)', '5% Other commodities (GSG)', '', '', '5% Bitcoin (BTC)', '', '', ''
 
     ax3.pie(vals.sum(axis=1), radius=1 - size, labels=labels, colors=outer_colors, labeldistance=0.65,
            wedgeprops=dict(width=size, edgecolor='w'))
