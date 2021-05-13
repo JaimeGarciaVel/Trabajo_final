@@ -189,7 +189,7 @@ if graficos_acciones == 'Inversor conservador':
     cons = np.load('portfolio_conservador.npy', allow_pickle=True)
     fig4, ax4 = plt.subplots(figsize=(10, 6))
     ax4.plot(cons)
-    st.pyplot(fig4)
+    st.line_chart(fig4)
 
     st.write('# ¿Por qué Stock market?')
     st.write('➤Total stock market ETF - Ticker VTI')
