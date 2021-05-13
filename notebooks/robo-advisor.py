@@ -260,7 +260,7 @@ if graficos_acciones == 'Inversor conservador':
 
     st.text("")
 
-    st.write('➤Oro - Ticker GSG')
+    st.write('➤Other commodities - Ticker GSG')
     tickerData5 = yf.Ticker('GSG')
     tickerDf5 = tickerData5.history(period='1d', start='2011-1-1', end='2021-5-13')
     st.line_chart(tickerDf5.Close)
