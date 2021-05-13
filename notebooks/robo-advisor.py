@@ -186,6 +186,17 @@ if graficos_acciones == 'Inversor conservador':
 
     st.write('# Rendimiento portfolio')
 
+    tickerData1 = yf.Ticker('VTI')
+    tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData2 = yf.Ticker('TLT')
+    tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData3 = yf.Ticker('IEI')
+    tickerDf3 = tickerData3.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData4 = yf.Ticker('GLD')
+    tickerDf4 = tickerData4.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData5 = yf.Ticker('GSG')
+    tickerDf5 = tickerData5.history(period='1d', start='2011-1-1', end='2021-5-13')
+    
     cons = tickerDf2['Close']*0.40+tickerDf1['Close']*0.3+tickerDf3['Close']*0.15+tickerDf4['Close']*0.075+\
            tickerDf5['Close']*0.075
     fig4, ax4 = plt.subplots(figsize=(10, 6))
