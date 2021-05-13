@@ -214,39 +214,57 @@ if graficos_acciones == 'Inversor conservador':
     image = Image.open('Stocks conservadores.jpg')
     st.image(image, caption='Evolución portafolio compuesto por una acción de cada empresa del cluster conservador')
 
-    st.write('# ¿Por qué SP500 ETF?')
-    st.write('SP500 ETF - Ticker VOO')
-    tickerData1 = yf.Ticker('VOO')
-    tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-2')
+    st.write('# ¿Por qué Stock market?')
+    st.write('Total stock market ETF - Ticker VTI')
+    tickerData1 = yf.Ticker('VTI')
+    tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-13')
     st.line_chart(tickerDf1.Close)
 
-    st.write('1. Exposición a las 500 empresas más grandes de los EE.UU.')
-    st.write('2. El objetivo es replicar el rendimiento del índice S&P 500.')
-    st.write('3. Hágalo parte fundamental de su cartera para diversificarse en el mercado estadounidense y buscar '
+    st.write('1. Exposición al mercado americano, con empresas large-, mid- y small-caps con estilos value y growth.')
+    st.write('2. Hágalo parte fundamental de su cartera para diversificarse en el mercado estadounidense y buscar '
              'crecimiento a largo plazo.')
-    st.write('4. Con un rendimiento anual medio del 15.74% desde el año de lanzamiento.')
+    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 13.8%.')
 
-    st.write('# ¿Por qué International market ETF?')
-    st.write('International market ETF - Ticker IEFA')
-    tickerData2 = yf.Ticker('IEFA')
-    tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-2')
+    st.write('# ¿Por qué Bonds?')
+    st.write('Bono EEU. UU. largo plazo - Ticker TLT')
+    tickerData2 = yf.Ticker('TLT')
+    tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-13')
     st.line_chart(tickerDf2.Close)
-
-    st.write('1. Exposición a un amplio rango de empresas de Europa, Australia y Asia.')
-    st.write('2. Acceso completo y de bajo costo a valores de renta variable de alta, mediana y baja capitalización de '
-             'mercados desarrollados.')
-    st.write('3. Hágalo parte fundamental de su cartera para diversificarse internacionalmente y buscar crecimiento a '
-             'largo plazo.')
-    st.write('4. Con un rendimiento anual medio del 7.56% desde el año de lanzamiento.')
-
-    st.write('# ¿Por qué Bonos?')
-    st.write('Rentabilidad bono Estados Unidos a 10 años')
-    tickerData4 = yf.Ticker('^TNX')
-    tickerDf4 = tickerData4.history(period='1d', start='2011-1-1', end='2021-5-2')
-    st.line_chart(tickerDf4.Close)
 
     st.write('1. Inversión segura, activo que proporciona estabilidad y ofrece un flujo de ingresos predecible.')
     st.write('2. Diversifica y reduce la volatilidad del portafolio.')
+    st.write('3. Exposicióna a los Bonos de Tesoro de EE.UU. a largo (20 años) plazo.')
+    st.write('4. Con un rendimiento anual medio en los últimos 10 años del 6.66%.')
+
+    st.write('Bono EEU. UU. medio plazo - Ticker IEI')
+    tickerData3 = yf.Ticker('IEI')
+    tickerDf3 = tickerData3.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf3.Close)
+
+    st.write('1. Inversión segura, activo que proporciona estabilidad y ofrece un flujo de ingresos predecible.')
+    st.write('2. Diversifica y reduce la volatilidad del portafolio.')
+    st.write('3. Exposicióna a los Bonos de Tesoro de EE.UU. a medio (3-7 años) plazo.')
+    st.write('4. Con un rendimiento anual medio en los últimos 10 años del 2.68%.')
+
+    st.write('# ¿Por qué Commodities?')
+    st.write('Oro - Ticker GLD')
+    tickerData4 = yf.Ticker('GLD')
+    tickerDf4 = tickerData4.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf4.Close)
+
+    st.write('1. Exposición al mercado del oro.')
+    st.write('3. Diversifica el portafolio.')
+    st.write('3. Buena actuación en épocas de crecimiento económico y/o alta inflación.')
+
+    st.write('Oro - Ticker GSG')
+    tickerData5 = yf.Ticker('GSG')
+    tickerDf5 = tickerData5.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf5.Close)
+
+    st.write('1. Exposición a un amplio rango de mercancías.')
+    st.write('2. Acceso a mercados de energía, metales industriales y preciosos, agricultura y ganadería.')
+    st.write('3. Diversifica el portafolio.')
+    st.write('3. Buena actuación en épocas de crecimiento económico y/o alta inflación.')
 
 elif graficos_acciones == 'Inversor moderado':
 
