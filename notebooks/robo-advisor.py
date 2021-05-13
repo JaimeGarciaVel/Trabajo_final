@@ -190,13 +190,13 @@ if graficos_acciones == 'Inversor conservador':
     fig4, ax4 = plt.subplots(figsize=(10, 6))
     ax4.plot(cons)
     st.pyplot(fig4)
-    st.write('1. Portfolio compuesto de un 30% de stocks, 55% de bono y 15% de commodities.')
+    st.write('1. Portfolio compuesto de un 30% de stocks, 55% de bonos y 15% de commodities.')
     st.write('2. Portfolio resistente a las crisis, el peor año ha sido el 2015 con una caída de un -3.73% y el mejor '
              'año ha sido el 2019 con una subida del 18.22%.')
     st.write('3. Con un rendimiento anual medio en los últimos 10 años del 7.22% y un rendimiento total del 107.09%.')
 
     st.write('# ¿Por qué Stock market?')
-    st.write('➤Total stock market ETF - Ticker VTI')
+    st.write('➤Total US stock market ETF - Ticker VTI')
     tickerData1 = yf.Ticker('VTI')
     tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-13')
     st.line_chart(tickerDf1.Close)
@@ -308,20 +308,19 @@ elif graficos_acciones == 'Inversor moderado':
     ax2.set(aspect="equal")
     st.pyplot(fig2)
 
-
     st.write('# Rendimiento portfolio')
 
     cons = np.load('portfolio_moderado.npy', allow_pickle=True)
     fig4, ax4 = plt.subplots(figsize=(10, 6))
     ax4.plot(cons)
     st.pyplot(fig4)
-    st.write('1. Portfolio compuesto de un 55% de stocks, 35% de bono y 10% de commodities.')
+    st.write('1. Portfolio compuesto de un 55% de stocks, 35% de bonos y 10% de commodities.')
     st.write('2. Portfolio con caídas moderadas en las crisis, con gran diversificación en el mercado estadounidense e '
              'internacional.')
     st.write('3. Con un rendimiento anual medio en los últimos 10 años del 8.4% y un rendimiento total del 123.7%.')
 
     st.write('# ¿Por qué Stock market?')
-    st.write('➤Total stock market ETF - Ticker VTI')
+    st.write('➤Total US stock market ETF - Ticker VTI')
     tickerData1 = yf.Ticker('VTI')
     tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-13')
     st.line_chart(tickerDf1.Close)
@@ -345,7 +344,7 @@ elif graficos_acciones == 'Inversor moderado':
 
     st.text("")
 
-    st.write('➤Real Estate - Ticker VEU')
+    st.write('➤International stock market ETF - Ticker VEU')
     tickerData7 = yf.Ticker('VEU')
     tickerDf7 = tickerData7.history(period='1d', start='2011-1-1', end='2021-5-13')
     st.line_chart(tickerDf7.Close)
