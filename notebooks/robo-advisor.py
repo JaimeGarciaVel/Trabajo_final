@@ -215,7 +215,7 @@ if graficos_acciones == 'Inversor conservador':
     st.image(image, caption='Evolución portafolio compuesto por una acción de cada empresa del cluster conservador')
 
     st.write('# ¿Por qué Stock market?')
-    st.write('Total stock market ETF - Ticker VTI')
+    st.write('➤Total stock market ETF - Ticker VTI')
     tickerData1 = yf.Ticker('VTI')
     tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-13')
     st.line_chart(tickerDf1.Close)
@@ -226,7 +226,7 @@ if graficos_acciones == 'Inversor conservador':
     st.write('3. Con un rendimiento anual medio en los últimos 10 años del 13.8%.')
 
     st.write('# ¿Por qué Bonds?')
-    st.write('Bono EEU. UU. largo plazo - Ticker TLT')
+    st.write('➤Bono EEU. UU. largo plazo - Ticker TLT')
     tickerData2 = yf.Ticker('TLT')
     tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-13')
     st.line_chart(tickerDf2.Close)
@@ -236,7 +236,9 @@ if graficos_acciones == 'Inversor conservador':
     st.write('3. Exposicióna a los Bonos de Tesoro de EE.UU. a largo (20 años) plazo.')
     st.write('4. Con un rendimiento anual medio en los últimos 10 años del 6.66%.')
 
-    st.write('Bono EEU. UU. medio plazo - Ticker IEI')
+    st.text("")
+
+    st.write('➤Bono EEU. UU. medio plazo - Ticker IEI')
     tickerData3 = yf.Ticker('IEI')
     tickerDf3 = tickerData3.history(period='1d', start='2011-1-1', end='2021-5-13')
     st.line_chart(tickerDf3.Close)
@@ -247,7 +249,7 @@ if graficos_acciones == 'Inversor conservador':
     st.write('4. Con un rendimiento anual medio en los últimos 10 años del 2.68%.')
 
     st.write('# ¿Por qué Commodities?')
-    st.write('Oro - Ticker GLD')
+    st.write('➤Oro - Ticker GLD')
     tickerData4 = yf.Ticker('GLD')
     tickerDf4 = tickerData4.history(period='1d', start='2011-1-1', end='2021-5-13')
     st.line_chart(tickerDf4.Close)
@@ -256,7 +258,9 @@ if graficos_acciones == 'Inversor conservador':
     st.write('3. Diversifica el portafolio.')
     st.write('3. Buena actuación en épocas de crecimiento económico y/o alta inflación.')
 
-    st.write('Oro - Ticker GSG')
+    st.text("")
+
+    st.write('➤Oro - Ticker GSG')
     tickerData5 = yf.Ticker('GSG')
     tickerDf5 = tickerData5.history(period='1d', start='2011-1-1', end='2021-5-13')
     st.line_chart(tickerDf5.Close)
