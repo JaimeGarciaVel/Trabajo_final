@@ -439,7 +439,7 @@ else:
                     d(0.6)]
     labels = 'Bonds', 'Stock market', 'Commodities', 'Cryptocurrencies'
     labels2 = '10% US Bond intermediate-term (IEI)', '25% US Bond long-term (TLT)', '', '', '10% Real Estate (VNQ)', \
-              '35% US large cap (VTI)', '15% International large cap (VEU)', '5% Emerging markets large cap (EEM)', \
+              '35% US large cap (VTI)', '15% International large cap (VEU)', '5% US small cap (IJT)', \
               '5% Gold (GLD)', '5% Other commodities (GSG)', '', '', '5% Bitcoin (BTC)', '', '', ''
 
     ax3.pie(vals.sum(axis=1), radius=1 - size, labels=labels, colors=outer_colors, labeldistance=0.65,
@@ -450,6 +450,128 @@ else:
 
     ax3.set(aspect="equal")
     st.pyplot(fig3)
+
+    st.write('# Rendimiento portfolio')
+
+    cons = np.load('portfolio_moderado.npy', allow_pickle=True)
+    fig4, ax4 = plt.subplots(figsize=(10, 6))
+    ax4.plot(cons)
+    st.pyplot(fig4)
+    st.write('1. Portfolio compuesto de un 55% de stocks, 35% de bonos y 10% de commodities.')
+    st.write('2. Portfolio con caídas moderadas en las crisis, con gran diversificación en el mercado estadounidense e '
+             'internacional.')
+    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 8.4% y un rendimiento total del 123.7%.')
+
+    st.write('# ¿Por qué Stock market?')
+    st.write('➤Total US stock market ETF - Ticker VTI')
+    tickerData1 = yf.Ticker('VTI')
+    tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf1.Close)
+
+    st.write('1. Exposición al mercado americano, con empresas large-, mid- y small-caps con estilos value y growth.')
+    st.write('2. Hágalo parte fundamental de su cartera para diversificarse en el mercado estadounidense y buscar '
+             'crecimiento a largo plazo.')
+    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 13.8%.')
+
+    st.text("")
+
+    st.write('➤Real Estate - Ticker VNQ')
+    tickerData6 = yf.Ticker('VNQ')
+    tickerDf6 = tickerData6.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf6.Close)
+
+    st.write('1. Exposición al mercado de real estate americano, con empresas que compran edificios, hoteles y otras '
+             'propiedades.')
+    st.write('2. Hágalo parte fundamental de su cartera para diversificarse y buscar crecimiento a largo plazo.')
+    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 9%.')
+
+    st.text("")
+
+    st.write('➤International stock market ETF - Ticker VEU')
+    tickerData7 = yf.Ticker('VEU')
+    tickerDf7 = tickerData7.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf7.Close)
+
+    st.write('1. Exposición al mercado de valores internacional, con empresas large-, mid- y small-caps.')
+    st.write('2. Hágalo parte fundamental de su cartera para diversificarse en mercados desarrollados y en desarrollo, '
+             'excluyendo EE. UU..')
+    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 5.23%.')
+
+    st.text("")
+
+    st.write('➤US small cap ETF - Ticker IJT')
+    tickerData7 = yf.Ticker('IJT')
+    tickerDf7 = tickerData7.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf7.Close)
+
+    st.write('1. Exposición a pequeñas empresas de EE. UU. cuyas ganancias se espera que aumenten a una tasa superior '
+             'al promedio en comparación con el mercado.')
+    st.write('2. Hágalo parte fundamental de su cartera para diversificarse en acciones estadounidenses y para orientar'
+             ' su cartera hacia acciones "growth".')
+    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 13.55%.')
+
+    st.write('# ¿Por qué Bonds?')
+    st.write('➤Bono EEU. UU. largo plazo - Ticker TLT')
+    tickerData2 = yf.Ticker('TLT')
+    tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf2.Close)
+
+    st.write('1. Inversión segura, activo que proporciona estabilidad y ofrece un flujo de ingresos predecible.')
+    st.write('2. Diversifica y reduce la volatilidad del portafolio.')
+    st.write('3. Exposicióna a los Bonos de Tesoro de EE.UU. a largo (20 años) plazo.')
+    st.write('4. Con un rendimiento anual medio en los últimos 10 años del 6.66%.')
+
+    st.text("")
+
+    st.write('➤Bono EEU. UU. medio plazo - Ticker IEI')
+    tickerData3 = yf.Ticker('IEI')
+    tickerDf3 = tickerData3.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf3.Close)
+
+    st.write('1. Inversión segura, activo que proporciona estabilidad y ofrece un flujo de ingresos predecible.')
+    st.write('2. Diversifica y reduce la volatilidad del portafolio.')
+    st.write('3. Exposicióna a los Bonos de Tesoro de EE.UU. a medio (3-7 años) plazo.')
+    st.write('4. Con un rendimiento anual medio en los últimos 10 años del 2.68%.')
+
+    st.write('# ¿Por qué Commodities?')
+    st.write('➤Oro - Ticker GLD')
+    tickerData4 = yf.Ticker('GLD')
+    tickerDf4 = tickerData4.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf4.Close)
+
+    st.write('1. Exposición al mercado del oro.')
+    st.write('3. Diversifica el portafolio.')
+    st.write('3. Buena actuación en épocas de crecimiento económico y/o alta inflación.')
+
+    st.text("")
+
+    st.write('➤Other commodities - Ticker GSG')
+    tickerData5 = yf.Ticker('GSG')
+    tickerDf5 = tickerData5.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf5.Close)
+
+    st.write('1. Exposición a un amplio rango de mercancías.')
+    st.write('2. Acceso a mercados de energía, metales industriales y preciosos, agricultura y ganadería.')
+    st.write('3. Diversifica el portafolio.')
+    st.write('3. Buena actuación en épocas de crecimiento económico y/o alta inflación.')
+
+    st.write('# ¿Por qué BTC?')
+    st.write('Bitcoin - Ticker BTC')
+    tickerData3 = yf.Ticker('BTC-USD')
+    tickerDf3 = tickerData3.history(period='1d', start='2017-1-1', end='2021-5-2')
+    st.line_chart(tickerDf3.Close)
+
+    image1 = Image.open('newplot.png')
+    st.image(image1, caption='Sharpe Ratio (ROI / Volatilidad) de diferentes activos')
+
+    image2 = Image.open('newplot (1).png')
+    st.image(image2, caption='Volatilidad Bitcoin vs otros activos')
+
+    st.write('1. Diversificación, exposición al mercado de las criptomonedas.')
+    st.write('2. Alta rentabilidad, con una mayor adopción cada año y con una alta volatilidad pero descendente.')
+    st.write('3. Activo deflacionario contra el sistema monetario inflacionario actual, el 24% del total de dólares en '
+             'circulación se crearon en 2020.')
+
 
     np.load('stocks_agresivos.npy', allow_pickle=True)
 
@@ -468,54 +590,3 @@ else:
 
     image = Image.open('Stocks agresivos.jpg')
     st.image(image, caption='Evolución portafolio compuesto por una acción de cada empresa del cluster agresivo')
-
-    st.write('# ¿Por qué SP500 ETF?')
-    st.write('SP500 ETF - Ticker VOO')
-    tickerData1 = yf.Ticker('VOO')
-    tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-2')
-    st.line_chart(tickerDf1.Close)
-
-    st.write('1. Exposición a las 500 empresas más grandes de los EE.UU.')
-    st.write('2. El objetivo es replicar el rendimiento del índice S&P 500.')
-    st.write('3. Hágalo parte fundamental de su cartera para diversificarse en el mercado estadounidense y buscar '
-             'crecimiento a largo plazo.')
-    st.write('4. Con un rendimiento anual medio del 15.74% desde el año de lanzamiento.')
-
-    st.write('# ¿Por qué International market ETF?')
-    st.write('International market ETF - Ticker IEFA')
-    tickerData2 = yf.Ticker('IEFA')
-    tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-2')
-    st.line_chart(tickerDf2.Close)
-
-    st.write('1. Exposición a un amplio rango de empresas de Europa, Australia y Asia.')
-    st.write('2. Acceso completo y de bajo costo a valores de renta variable de alta, mediana y baja capitalización de '
-             'mercados desarrollados.')
-    st.write('3. Hágalo parte fundamental de su cartera para diversificarse internacionalmente y buscar crecimiento a '
-             'largo plazo.')
-    st.write('4. Con un rendimiento anual medio del 7.56% desde el año de lanzamiento.')
-
-    st.write('# ¿Por qué Bonos?')
-    st.write('Rentabilidad bono Estados Unidos a 10 años')
-    tickerData4 = yf.Ticker('^TNX')
-    tickerDf4 = tickerData4.history(period='1d', start='2011-1-1', end='2021-5-2')
-    st.line_chart(tickerDf4.Close)
-
-    st.write('1. Inversión segura, activo que proporciona estabilidad y ofrece un flujo de ingresos predecible.')
-    st.write('2. Diversifica y reduce la volatilidad del portafolio.')
-
-    st.write('# ¿Por qué BTC?')
-    st.write('Bitcoin - Ticker BTC')
-    tickerData3 = yf.Ticker('BTC-USD')
-    tickerDf3 = tickerData3.history(period='1d', start='2017-1-1', end='2021-5-2')
-    st.line_chart(tickerDf3.Close)
-
-    image1 = Image.open('newplot.png')
-    st.image(image1, caption='Sharpe Ratio (ROI / Volatilidad) de diferentes activos')
-
-    image2 = Image.open('newplot (1).png')
-    st.image(image2, caption='Volatilidad Bitcoin vs otros activos')
-
-    st.write('1. Diversificación, exposición al mercado de las criptomonedas.')
-    st.write('2. Alta rentabilidad, con una mayor adopción cada año y con una alta volatilidad pero descendente.')
-    st.write('3. Activo deflacionario contra el sistema monetario inflacionario actual, el 24% del total de dólares en '
-             'circulación se crearon en 2020.')
