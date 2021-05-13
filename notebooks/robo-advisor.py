@@ -186,7 +186,8 @@ if graficos_acciones == 'Inversor conservador':
 
     st.write('# Rendimiento portfolio')
 
-    cons = np.load('portfolio_conservador.npy', allow_pickle=True)
+    cons = tickerDf2['Close']*0.40+tickerDf1['Close']*0.3+tickerDf3['Close']*0.15+tickerDf4['Close']*0.075+\
+           tickerDf5['Close']*0.075
     fig4, ax4 = plt.subplots(figsize=(10, 6))
     ax4.plot(cons)
     st.pyplot(fig4)
@@ -565,10 +566,10 @@ else:
     image2 = Image.open('newplot (1).png')
     st.image(image2, caption='Volatilidad Bitcoin vs otros activos')
 
-    st.write('1. Muy recomendable por estas razones:.')
-    st.write('2. Diversificación, exposición al mercado de las criptomonedas.')
-    st.write('3. Alta rentabilidad, con una mayor adopción cada año y con una alta volatilidad pero descendente.')
-    st.write('4. Activo deflacionario contra el sistema monetario inflacionario actual, el 24% del total de dólares en '
+    st.write(' Muy recomendable por estas razones:')
+    st.write('1. Diversificación, exposición al mercado de las criptomonedas.')
+    st.write('2. Alta rentabilidad, con una mayor adopción cada año y con una alta volatilidad pero descendente.')
+    st.write('3. Activo deflacionario contra el sistema monetario inflacionario actual, el 24% del total de dólares en '
              'circulación se crearon en 2020.')
 
 
