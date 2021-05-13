@@ -431,15 +431,14 @@ else:
     fig3, ax3 = plt.subplots(figsize=(10, 6))
 
     size = 0.3
-    vals = np.array([[5, 15, 0, 0], [10, 35, 15, 5], [5, 5, 0, 0], [5, 0, 0, 0]])
+    vals = np.array([[5, 15, 0, 0], [10, 35, 15, 10], [5, 5, 0, 0]])
 
-    a, b, c, d = [plt.cm.Blues, plt.cm.Reds, plt.cm.Greens, plt.cm.YlOrBr]
+    a, b, c, d = [plt.cm.Blues, plt.cm.Reds, plt.cm.Greens]
     outer_colors = [a(0.6), b(0.6), c(0.6), d(0.6)]
-    inner_colors = [a(0.5), a(0.4), a(0.3), a(0.2), b(0.5), b(0.4), b(0.3), b(0.2), c(0.5), c(0.4), c(0.3), c(0.2),
-                    d(0.6)]
-    labels = 'Bonds', 'Stock market', 'Commodities', 'Cryptocurrencies'
+    inner_colors = [a(0.5), a(0.4), a(0.3), a(0.2), b(0.5), b(0.4), b(0.3), b(0.2), c(0.5), c(0.4), c(0.3), c(0.2)]
+    labels = 'Bonds', 'Stock market', 'Commodities'
     labels2 = '10% US Bond intermediate-term (IEI)', '25% US Bond long-term (TLT)', '', '', '10% Real Estate (VNQ)', \
-              '35% US large cap (VTI)', '15% International large cap (VEU)', '5% US small cap (IJT)', \
+              '35% US large cap (VTI)', '15% International large cap (VEU)', '10% US small cap (IJT)', \
               '5% Gold (GLD)', '5% Other commodities (GSG)', '', '', '5% Bitcoin (BTC)', '', '', ''
 
     ax3.pie(vals.sum(axis=1), radius=1 - size, labels=labels, colors=outer_colors, labeldistance=0.65,
@@ -555,10 +554,10 @@ else:
     st.write('3. Diversifica el portafolio.')
     st.write('3. Buena actuación en épocas de crecimiento económico y/o alta inflación.')
 
-    st.write('# ¿Por qué BTC?')
+    st.write('# ¿Se puede añadir BTC a mi portfolio?')
     st.write('Bitcoin - Ticker BTC')
     tickerData9 = yf.Ticker('BTC-USD')
-    tickerDf9 = tickerData9.history(period='1d', start='2017-1-1', end='2021-5-2')
+    tickerDf9 = tickerData9.history(period='1d', start='2017-1-1', end='2021-5-13')
     st.line_chart(tickerDf9.Close)
 
     image1 = Image.open('newplot.png')
@@ -567,9 +566,10 @@ else:
     image2 = Image.open('newplot (1).png')
     st.image(image2, caption='Volatilidad Bitcoin vs otros activos')
 
-    st.write('1. Diversificación, exposición al mercado de las criptomonedas.')
-    st.write('2. Alta rentabilidad, con una mayor adopción cada año y con una alta volatilidad pero descendente.')
-    st.write('3. Activo deflacionario contra el sistema monetario inflacionario actual, el 24% del total de dólares en '
+    st.write('1. Muy recomendable por estas razones:.')
+    st.write('2. Diversificación, exposición al mercado de las criptomonedas.')
+    st.write('3. Alta rentabilidad, con una mayor adopción cada año y con una alta volatilidad pero descendente.')
+    st.write('4. Activo deflacionario contra el sistema monetario inflacionario actual, el 24% del total de dólares en '
              'circulación se crearon en 2020.')
 
 
