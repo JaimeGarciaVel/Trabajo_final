@@ -187,9 +187,9 @@ if graficos_acciones == 'Inversor conservador':
     st.write('# Rendimiento portfolio')
 
     cons = np.load('portfolio_conservador.npy', allow_pickle=True)
-    fig2, ax2 = plt.subplots(figsize=(10, 6))
-    ax2.plot(a)
-    st.pyplot(fig2)
+    fig4, ax4 = plt.subplots(figsize=(10, 6))
+    ax4.plot(cons)
+    st.pyplot(fig4)
 
     st.write('# ¿Por qué Stock market?')
     st.write('➤Total stock market ETF - Ticker VTI')
