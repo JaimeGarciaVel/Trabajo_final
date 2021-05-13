@@ -189,7 +189,11 @@ if graficos_acciones == 'Inversor conservador':
     cons = np.load('portfolio_conservador.npy', allow_pickle=True)
     fig4, ax4 = plt.subplots(figsize=(10, 6))
     ax4.plot(cons)
-    st.line_chart(fig4)
+    st.pyplot(fig4)
+    st.write('1. Portfolio compuesto de un 30% de stocks, 55% de bono y 15% de commodities.')
+    st.write('2. Portfolio resistente a las crisis, el peor año ha sido el 2015 con una caída de un -3.73% y el mejor '
+             'año ha sido el 2019 con una subida del 18.22%.')
+    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 7.22%.')
 
     st.write('# ¿Por qué Stock market?')
     st.write('➤Total stock market ETF - Ticker VTI')
