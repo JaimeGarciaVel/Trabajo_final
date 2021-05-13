@@ -500,9 +500,9 @@ else:
     st.text("")
 
     st.write('➤US small cap ETF - Ticker IJT')
-    tickerData7 = yf.Ticker('IJT')
-    tickerDf7 = tickerData7.history(period='1d', start='2011-1-1', end='2021-5-13')
-    st.line_chart(tickerDf7.Close)
+    tickerData8 = yf.Ticker('IJT')
+    tickerDf8 = tickerData8.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf8.Close)
 
     st.write('1. Exposición a pequeñas empresas de EE. UU. cuyas ganancias se espera que aumenten a una tasa superior '
              'al promedio en comparación con el mercado.')
@@ -557,9 +557,9 @@ else:
 
     st.write('# ¿Por qué BTC?')
     st.write('Bitcoin - Ticker BTC')
-    tickerData3 = yf.Ticker('BTC-USD')
-    tickerDf3 = tickerData3.history(period='1d', start='2017-1-1', end='2021-5-2')
-    st.line_chart(tickerDf3.Close)
+    tickerData9 = yf.Ticker('BTC-USD')
+    tickerDf9 = tickerData9.history(period='1d', start='2017-1-1', end='2021-5-2')
+    st.line_chart(tickerDf9.Close)
 
     image1 = Image.open('newplot.png')
     st.image(image1, caption='Sharpe Ratio (ROI / Volatilidad) de diferentes activos')
