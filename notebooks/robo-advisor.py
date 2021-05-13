@@ -162,12 +162,26 @@ if graficos_acciones == 'Inversor conservador':
 
     st.write('# Portafolio inversor conservador')
     st.text("")
-    labels = 'SP500 ETF', 'International market ETF', 'Bonos', 'Cash', 'Large & mid caps'
-    colors = ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99', '#99ffff']
-    sizes = [20, 10, 40, 20, 10]
-    fig1, ax1 = plt.subplots()
-    ax1.pie(sizes, colors=colors, labels=labels, autopct='%1.1f%%', startangle=90)
-    ax1.axis('equal')
+
+    fig1, ax1 = plt.subplots(figsize=(10, 6))
+
+    size = 0.3
+    vals = np.array([[15, 40], [30, 0], [7.5, 7.5]])
+
+    cmap = plt.get_cmap("tab20c")
+    outer_colors = cmap(np.arange(3) * 4)
+    inner_colors = cmap([1, 2, 5, 6, 9, 10])
+    labels = 'Bonds', 'Stock market', 'Commodities'
+    labels2 = 'US Bond intermediate-term (IEI)', 'US Bond long-term (TLT)', '30% US large cap (VTI)', '',\
+              '7,5% Gold (GLD)', '7,5% Other commodities (GSG)'
+
+    ax1.pie(vals.sum(axis=1), radius=1 - size, labels=labels, colors=outer_colors, wedgeprops=dict(width=size,
+                                                                                                   edgecolor='w'))
+
+    ax1.pie(vals.flatten(), radius=1, labels=labels2, colors=inner_colors, wedgeprops=dict(width=size, edgecolor='w'))
+
+    ax1.set(aspect="equal")
+
     st.pyplot(fig1)
 
     np.load('stocks_conservadores.npy', allow_pickle=True)
