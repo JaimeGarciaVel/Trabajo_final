@@ -434,7 +434,7 @@ else:
     vals = np.array([[5, 15, 0, 0], [10, 35, 15, 10], [5, 5, 0, 0]])
 
     a, b, c = [plt.cm.Blues, plt.cm.Reds, plt.cm.Greens]
-    outer_colors = [a(0.6), b(0.6), c(0.6), d(0.6)]
+    outer_colors = [a(0.6), b(0.6), c(0.6)]
     inner_colors = [a(0.5), a(0.4), a(0.3), a(0.2), b(0.5), b(0.4), b(0.3), b(0.2), c(0.5), c(0.4), c(0.3), c(0.2)]
     labels = 'Bonds', 'Stock market', 'Commodities'
     labels2 = '10% US Bond intermediate-term (IEI)', '25% US Bond long-term (TLT)', '', '', '10% Real Estate (VNQ)', \
