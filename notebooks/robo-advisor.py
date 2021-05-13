@@ -452,14 +452,13 @@ else:
 
     st.write('# Rendimiento portfolio')
 
-    cons = np.load('portfolio_moderado.npy', allow_pickle=True)
+    cons = np.load('portfolio_agresivo.npy', allow_pickle=True)
     fig4, ax4 = plt.subplots(figsize=(10, 6))
     ax4.plot(cons)
     st.pyplot(fig4)
-    st.write('1. Portfolio compuesto de un 55% de stocks, 35% de bonos y 10% de commodities.')
-    st.write('2. Portfolio con caídas moderadas en las crisis, con gran diversificación en el mercado estadounidense e '
-             'internacional.')
-    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 8.4% y un rendimiento total del 123.7%.')
+    st.write('1. Portfolio compuesto de un 70% de stocks, 20% de bonos y 10% de commodities.')
+    st.write('2. Portfolio volátil, con alto riesgo pero también con alto rendimiento.')
+    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 9.75% y un rendimiento total del 154.54%.')
 
     st.write('# ¿Por qué Stock market?')
     st.write('➤Total US stock market ETF - Ticker VTI')
