@@ -218,10 +218,10 @@ if graficos_acciones == 'Inversor conservador':
              'crecimiento a largo plazo.')
     st.write('3. Con un rendimiento anual medio en los últimos 10 años del 13.8%.')
     st.write('4. Diversificación por sectores: Technology (25.5%), Consumer Discretionary (16.4%), Industrials (14.2%),'
-             'Health Care (13.1%), Financials (11.9%), Consumer Staples (5%), Real Estate (3.4%), Utilities (2.9%), '
+             ' Health Care (13.1%), Financials (11.9%), Consumer Staples (5%), Real Estate (3.4%), Utilities (2.9%), '
              'Energy(2.8%), Telecommunications (2.6%), Basic Materials (2.2%).')
-    st.write('5. Top 10 valores en el ETF: Apple, Microsoft, Amazon, Alphabet, Facebook, Tesla, Berkshure Hathaway,'
-             'JPMorgan Chase, Johnson & Johnson y Visa.')
+    st.write('5. Top 10 valores en el ETF: Apple, Microsoft, Amazon, Alphabet, Facebook, Tesla, Berkshire Hathaway,'
+             ' JPMorgan Chase, Johnson & Johnson y Visa.')
 
     st.write('# ¿Por qué Bonds?')
     st.write('➤Bono EEU. UU. largo plazo - Ticker TLT')
@@ -267,7 +267,7 @@ if graficos_acciones == 'Inversor conservador':
     st.write('2. Acceso a mercados de energía, metales industriales y preciosos, agricultura y ganadería.')
     st.write('3. Buena actuación en épocas de crecimiento económico y/o alta inflación.')
     st.write('4. Compuesto por: Energía (53.64%), Agricultura (21.55%), Metales industriales (12.55%), Ganado (7.04%) y'
-             'Metales Preciosos (5.22%).')
+             ' Metales Preciosos (5.22%).')
 
     np.load('stocks_conservadores.npy', allow_pickle=True)
 
@@ -363,10 +363,10 @@ elif graficos_acciones == 'Inversor moderado':
              'crecimiento a largo plazo.')
     st.write('3. Con un rendimiento anual medio en los últimos 10 años del 13.8%.')
     st.write('4. Diversificación por sectores: Technology (25.5%), Consumer Discretionary (16.4%), Industrials (14.2%),'
-             'Health Care (13.1%), Financials (11.9%), Consumer Staples (5%), Real Estate (3.4%), Utilities (2.9%), '
+             ' Health Care (13.1%), Financials (11.9%), Consumer Staples (5%), Real Estate (3.4%), Utilities (2.9%), '
              'Energy(2.8%), Telecommunications (2.6%), Basic Materials (2.2%).')
-    st.write('5. Top 10 valores en el ETF: Apple, Microsoft, Amazon, Alphabet, Facebook, Tesla, Berkshure Hathaway, '
-             'JPMorgan Chase, Johnson & Johnson y Visa ')
+    st.write('5. Top 10 valores en el ETF: Apple, Microsoft, Amazon, Alphabet, Facebook, Tesla, Berkshire Hathaway, '
+             ' JPMorgan Chase, Johnson & Johnson y Visa ')
 
     st.text("")
 
@@ -395,9 +395,9 @@ elif graficos_acciones == 'Inversor moderado':
              'excluyendo EE. UU..')
     st.write('3. Con un rendimiento anual medio en los últimos 10 años del 5.23%.')
     st.write('4. Diversificación por regiones: Emerging Markets (25.7%), Europe (39.1%), Pacific (28.6%), North America'
-             '(5.6%), Middle East (0.3%) y Otros (0.7%).')
+             ' (5.6%), Middle East (0.3%) y Otros (0.7%).')
     st.write('5. Top 10 valores en el ETF: Taiwan Semiconductor Manufacturing, Tencent Holdings, Alibaba Group Holding,'
-             'Samsung Electronics, Nestle, ASML Holding, Roche Holding, Toyota Motor Corp., Novartis y LVMH.')
+             ' Samsung Electronics, Nestle, ASML Holding, Roche Holding, Toyota Motor Corp., Novartis y LVMH.')
 
     st.write('# ¿Por qué Bonds?')
     st.write('➤Bono EEU. UU. largo plazo - Ticker TLT')
@@ -443,7 +443,7 @@ elif graficos_acciones == 'Inversor moderado':
     st.write('2. Acceso a mercados de energía, metales industriales y preciosos, agricultura y ganadería.')
     st.write('3. Buena actuación en épocas de crecimiento económico y/o alta inflación.')
     st.write('4. Compuesto por: Energía (53.64%), Agricultura (21.55%), Metales industriales (12.55%), Ganado (7.04%) y'
-             'Metales Preciosos (5.22%).')
+             ' Metales Preciosos (5.22%).')
 
 
     np.load('stocks_moderados.npy', allow_pickle=True)
@@ -535,10 +535,10 @@ else:
              'crecimiento a largo plazo.')
     st.write('3. Con un rendimiento anual medio en los últimos 10 años del 13.8%.')
     st.write('4. Diversificación por sectores: Technology (25.5%), Consumer Discretionary (16.4%), Industrials (14.2%),'
-             'Health Care (13.1%), Financials (11.9%), Consumer Staples (5%), Real Estate (3.4%), Utilities (2.9%), '
+             ' Health Care (13.1%), Financials (11.9%), Consumer Staples (5%), Real Estate (3.4%), Utilities (2.9%), '
              'Energy(2.8%), Telecommunications (2.6%), Basic Materials (2.2%).')
-    st.write('5. Top 10 valores en el ETF: Apple, Microsoft, Amazon, Alphabet, Facebook, Tesla, Berkshure Hathaway, '
-              'JPMorgan Chase, Johnson & Johnson y Visa ')
+    st.write('5. Top 10 valores en el ETF: Apple, Microsoft, Amazon, Alphabet, Facebook, Tesla, Berkshire Hathaway, '
+             ' JPMorgan Chase, Johnson & Johnson y Visa ')
 
     st.text("")
 
@@ -567,9 +567,9 @@ else:
              'excluyendo EE. UU..')
     st.write('3. Con un rendimiento anual medio en los últimos 10 años del 5.23%.')
     st.write('4. Diversificación por regiones: Emerging Markets (25.7%), Europe (39.1%), Pacific (28.6%), North America'
-             '(5.6%), Middle East (0.3%) y Otros (0.7%).')
+             ' (5.6%), Middle East (0.3%) y Otros (0.7%).')
     st.write('5. Top 10 valores en el ETF: Taiwan Semiconductor Manufacturing, Tencent Holdings, Alibaba Group Holding,'
-             'Samsung Electronics, Nestle, ASML Holding, Roche Holding, Toyota Motor Corp., Novartis y LVMH.')
+             ' Samsung Electronics, Nestle, ASML Holding, Roche Holding, Toyota Motor Corp., Novartis y LVMH.')
 
     st.text("")
 
@@ -584,7 +584,7 @@ else:
              ' su cartera hacia acciones "growth".')
     st.write('3. Con un rendimiento anual medio en los últimos 10 años del 13.55%.')
     st.write('4. Diversificación por sector: Industrial (18.67%), Tecnología (18.01%), Consumer discretionary (17.01%),'
-             'Health Care (16.74%), Financieros (9.97%), Inmobiliario (5.45%), Productos básicos de consumo (4.7%), '
+             ' Health Care (16.74%), Financieros (9.97%), Inmobiliario (5.45%), Productos básicos de consumo (4.7%), '
              'Materiales (4.17%), Energía (2.14%), Comunicación (2.14%) y Servivios (1%).')
 
     st.write('# ¿Por qué Bonds?')
@@ -631,7 +631,7 @@ else:
     st.write('2. Acceso a mercados de energía, metales industriales y preciosos, agricultura y ganadería.')
     st.write('3. Buena actuación en épocas de crecimiento económico y/o alta inflación.')
     st.write('4. Compuesto por: Energía (53.64%), Agricultura (21.55%), Metales industriales (12.55%), Ganado (7.04%) y'
-             'Metales Preciosos (5.22%).')
+             ' Metales Preciosos (5.22%).')
 
     st.write('# ¿Se puede añadir BTC a mi portfolio?')
     st.write('Bitcoin - Ticker BTC')
