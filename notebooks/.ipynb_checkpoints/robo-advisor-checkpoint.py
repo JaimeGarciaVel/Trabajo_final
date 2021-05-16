@@ -5,7 +5,8 @@ import streamlit as st
 from pickle import load
 from PIL import Image
 import yfinance as yf
-st.set_page_config(layout="wide")
+
+st.set_page_config(layout="centered")
 
 st.title('Robo-advisor')
 
@@ -26,7 +27,7 @@ Patrimonio = st.select_slider('Patrimonio neto', options=['<5.000 €', 'Entre 5
                                                           'Entre 75.000 € y 180.000 €',
                                                           'Entre 180.000 € y 370.000 €',
                                                           'Entre 370.000 € y 1.350.000 €'])
-Renta = st.select_slider('Renta anual', options=['<900 €', 'Entre 900 € y 1.350 €', 'Entre 1.350 € y 1.700 €',
+Renta = st.select_slider('Renta mensual', options=['<900 €', 'Entre 900 € y 1.350 €', 'Entre 1.350 € y 1.700 €',
                                                  'Entre 1.700 € y 2.400 €', 'Entre 2.400 € y 3.500 €', '>3.500 €'])
 
 if Sexo == 'Hombre':
@@ -139,6 +140,8 @@ if st.button('Descubra su perfil de inversor'):
         st.write('Su perfil de inversor es moderado')
 
 
+st.text("")
+st.text("")
 st.write('# Paso 2:')
 graficos_acciones = st.selectbox(
     'Selecciona el tipo de inversor que eres para ver en qué activos invertir',
@@ -157,18 +160,121 @@ df = load_data()
 
 if graficos_acciones == 'Inversor conservador':
 
-    st.write('Portafolio inversor conservador')
-    labels = 'SP500 ETF', 'International market ETF', 'Bonos', 'Cash', 'Large & mid caps'
-    colors = ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99', '#99ffff']
-    sizes = [20, 10, 40, 20, 10]
-    fig1, ax1 = plt.subplots()
-    ax1.pie(sizes, colors=colors, labels=labels, autopct='%1.1f%%', startangle=90)
-    ax1.axis('equal')
+    st.write('# Portafolio inversor conservador')
+    st.text("")
+
+    fig1, ax1 = plt.subplots(figsize=(10, 6))
+
+    size = 0.3
+    vals = np.array([[15, 40], [30, 0], [7.5, 7.5]])
+
+    cmap = plt.get_cmap("tab20c")
+    outer_colors = cmap(np.arange(3) * 4)
+    inner_colors = cmap([1, 2, 5, 6, 9, 10])
+    labels = 'Bonds', 'Stock market', 'Commodities'
+    labels2 = '15% US Bond intermediate-term (IEI)', '40% US Bond long-term (TLT)', '30% US large cap (VTI)', '',\
+              '7,5% Gold (GLD)', '7,5% Other commodities (GSG)'
+
+    ax1.pie(vals.sum(axis=1), radius=1 - size, labels=labels, colors=outer_colors, labeldistance=0.65,
+            wedgeprops=dict(width=size, edgecolor='w'))
+
+    ax1.pie(vals.flatten(), radius=1, labels=labels2, colors=inner_colors, wedgeprops=dict(width=size, edgecolor='w'))
+
+    ax1.set(aspect="equal")
+
     st.pyplot(fig1)
+
+    st.write('# Rendimiento portfolio')
+
+    tickerData1 = yf.Ticker('VTI')
+    tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData2 = yf.Ticker('TLT')
+    tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData3 = yf.Ticker('IEI')
+    tickerDf3 = tickerData3.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData4 = yf.Ticker('GLD')
+    tickerDf4 = tickerData4.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData5 = yf.Ticker('GSG')
+    tickerDf5 = tickerData5.history(period='1d', start='2011-1-1', end='2021-5-13')
+
+    cons = tickerDf2['Close']*0.40+tickerDf1['Close']*0.3+tickerDf3['Close']*0.15+tickerDf4['Close']*0.075+\
+           tickerDf5['Close']*0.075
+    fig4, ax4 = plt.subplots(figsize=(10, 6))
+    ax4.plot(cons)
+    st.pyplot(fig4)
+    st.write('1. Portfolio compuesto de un 30% de stocks, 55% de bonos y 15% de commodities.')
+    st.write('2. Portfolio resistente a las crisis, el peor año ha sido el 2015 con una caída de un -3.73% y el mejor '
+             'año ha sido el 2019 con una subida del 18.22%.')
+    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 7.22% y un rendimiento total del 107.09%.')
+
+    st.write('# ¿Por qué Stock market?')
+    st.write('➤Total US stock market ETF - Ticker VTI')
+    tickerData1 = yf.Ticker('VTI')
+    tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf1.Close)
+
+    st.write('1. Exposición al mercado americano, con empresas large-, mid- y small-caps con estilos value y growth.')
+    st.write('2. Hágalo parte fundamental de su cartera para diversificarse en el mercado estadounidense y buscar '
+             'crecimiento a largo plazo.')
+    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 13.8%.')
+    st.write('4. Diversificación por sectores: Technology (25.5%), Consumer Discretionary (16.4%), Industrials (14.2%),'
+             ' Health Care (13.1%), Financials (11.9%), Consumer Staples (5%), Real Estate (3.4%), Utilities (2.9%), '
+             'Energy(2.8%), Telecommunications (2.6%), Basic Materials (2.2%).')
+    st.write('5. Top 10 valores en el ETF: Apple, Microsoft, Amazon, Alphabet, Facebook, Tesla, Berkshire Hathaway,'
+             ' JPMorgan Chase, Johnson & Johnson y Visa.')
+
+    st.write('# ¿Por qué Bonds?')
+    st.write('➤Bono EEU. UU. largo plazo - Ticker TLT')
+    tickerData2 = yf.Ticker('TLT')
+    tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf2.Close)
+
+    st.write('1. Inversión segura, activo que proporciona estabilidad y ofrece un flujo de ingresos predecible.')
+    st.write('2. Diversifica y reduce la volatilidad del portafolio.')
+    st.write('3. Exposicióna a los Bonos de Tesoro de EE.UU. a largo (20 años) plazo.')
+    st.write('4. Con un rendimiento anual medio en los últimos 10 años del 6.66%.')
+
+    st.text("")
+
+    st.write('➤Bono EEU. UU. medio plazo - Ticker IEI')
+    tickerData3 = yf.Ticker('IEI')
+    tickerDf3 = tickerData3.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf3.Close)
+
+    st.write('1. Inversión segura, activo que proporciona estabilidad y ofrece un flujo de ingresos predecible.')
+    st.write('2. Diversifica y reduce la volatilidad del portafolio.')
+    st.write('3. Exposicióna a los Bonos de Tesoro de EE.UU. a medio (3-7 años) plazo.')
+    st.write('4. Con un rendimiento anual medio en los últimos 10 años del 2.68%.')
+
+    st.write('# ¿Por qué Commodities?')
+    st.write('➤Oro - Ticker GLD')
+    tickerData4 = yf.Ticker('GLD')
+    tickerDf4 = tickerData4.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf4.Close)
+
+    st.write('1. Exposición al mercado del oro.')
+    st.write('3. Diversifica el portafolio.')
+    st.write('3. Buena actuación en épocas de crecimiento económico y/o alta inflación.')
+
+    st.text("")
+
+    st.write('➤Other commodities - Ticker GSG')
+    tickerData5 = yf.Ticker('GSG')
+    tickerDf5 = tickerData5.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf5.Close)
+
+    st.write('1. Exposición a un amplio rango de mercancías, diversificando el portafolio.')
+    st.write('2. Acceso a mercados de energía, metales industriales y preciosos, agricultura y ganadería.')
+    st.write('3. Buena actuación en épocas de crecimiento económico y/o alta inflación.')
+    st.write('4. Compuesto por: Energía (53.64%), Agricultura (21.55%), Metales industriales (12.55%), Ganado (7.04%) y'
+             ' Metales Preciosos (5.22%).')
 
     np.load('stocks_conservadores.npy', allow_pickle=True)
 
-    st.write('Large & mid caps cluster inversor conservador')
+    st.write('# Large & mid caps cluster inversor conservador')
+    st.text("")
+    st.text("")
+    st.text("")
     df_con = df[df.Symbol.isin(
         ['ABT', 'ACN', 'AFL', 'APD', 'ARE', 'ALLE', 'LNT', 'ALL', 'AEE', 'AEP', 'AXP', 'AMT', 'AWK', 'AME', 'AMGN',
          'APH', 'AON', 'AIV', 'ADM', 'AJG',
@@ -185,36 +291,165 @@ if graficos_acciones == 'Inversor conservador':
          'UDR', 'USB', 'UTX', 'VTR', 'VRSK', 'VZ', 'WMT', 'DIS', 'WM', 'WEC', 'WELL', 'WU', 'WLTW', 'XEL', 'XYL', 'YUM',
          'ZBH'])]
     df_con = df_con.drop(labels=['SEC filings', 'Headquarters Location', 'Date first added', 'CIK'], axis=1)
+    df_con.rename(columns={'Symbol': 'Ticker', 'Security': 'Company', 'GICS Sector': 'Sector',
+                           'GICS Sub-Industry': 'Sub-Industry'}, inplace=True)
     df_con = df_con.reset_index(drop=True)
     st.write(df_con)
 
     image = Image.open('Stocks conservadores.jpg')
     st.image(image, caption='Evolución portafolio compuesto por una acción de cada empresa del cluster conservador')
 
-    st.write('SP500 ETF - Ticker VOO')
-    tickerData1 = yf.Ticker('VOO')
-    tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-2')
-    st.line_chart(tickerDf1.Close)
-
-    st.write('International market ETF - Ticker IEFA')
-    tickerData2 = yf.Ticker('IEFA')
-    tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-2')
-    st.line_chart(tickerDf2.Close)
-
 elif graficos_acciones == 'Inversor moderado':
 
-    st.write('Portafolio inversor moderado')
-    labels = 'SP500 ETF', 'International ETF', 'Bonos', 'Cash', 'Large & mid caps'
-    colors = ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99', '#99ffff']
-    sizes = [30, 15, 25, 10, 20]
-    fig2, ax2 = plt.subplots()
-    ax2.pie(sizes, colors=colors, labels=labels, autopct='%1.1f%%', startangle=90)
-    ax2.axis('equal')
+    st.write('# Portafolio inversor moderado')
+    st.text("")
+    fig2, ax2 = plt.subplots(figsize=(10, 6))
+
+    size = 0.3
+    vals = np.array([[10, 25, 0], [10, 30, 15], [5, 5, 0]])
+
+    a, b, c = [plt.cm.Blues, plt.cm.Reds, plt.cm.Greens]
+    outer_colors = [a(0.6), b(0.6), c(0.6)]
+    inner_colors = [a(0.5), a(0.4), a(0.3), b(0.5), b(0.4), b(0.3), c(0.5), c(0.4)]
+    labels = 'Bonds', 'Stock market', 'Commodities'
+    labels2 = '10% US Bond intermediate-term (IEI)', '25% US Bond long-term (TLT)', '', '10% Real Estate (VNQ)', \
+              '30% US large cap (VTI)', '15% International large cap (VEU)', '5% Gold (GLD)', \
+              '5% Other commodities (GSG)', ''
+
+    ax2.pie(vals.sum(axis=1), radius=1 - size, labels=labels, colors=outer_colors, labeldistance=0.65,
+           wedgeprops=dict(width=size, edgecolor='w'))
+
+    ax2.pie(vals.flatten(), radius=1, labels=labels2, colors=inner_colors,
+           wedgeprops=dict(width=size, edgecolor='w'))
+
+    ax2.set(aspect="equal")
     st.pyplot(fig2)
 
-    np.load('stocks_moderados.npy', allow_pickle=True)
+    st.write('# Rendimiento portfolio')
 
-    st.write('Large & mid caps cluster inversor moderado')
+    tickerData1 = yf.Ticker('VTI')
+    tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData2 = yf.Ticker('TLT')
+    tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData3 = yf.Ticker('IEI')
+    tickerDf3 = tickerData3.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData4 = yf.Ticker('GLD')
+    tickerDf4 = tickerData4.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData5 = yf.Ticker('GSG')
+    tickerDf5 = tickerData5.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData6 = yf.Ticker('VNQ')
+    tickerDf6 = tickerData6.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData7 = yf.Ticker('VEU')
+    tickerDf7 = tickerData7.history(period='1d', start='2011-1-1', end='2021-5-13')
+
+    cons = tickerDf2['Close']*0.25+tickerDf1['Close']*0.3+tickerDf3['Close']*0.1+tickerDf4['Close']*0.05+\
+           tickerDf5['Close']*0.05+tickerDf6['Close']*0.1+tickerDf7['Close']*0.15
+    fig4, ax4 = plt.subplots(figsize=(10, 6))
+    ax4.plot(cons)
+    st.pyplot(fig4)
+    st.write('1. Portfolio compuesto de un 55% de stocks, 35% de bonos y 10% de commodities.')
+    st.write('2. Portfolio con caídas moderadas en las crisis, con gran diversificación en el mercado estadounidense e '
+             'internacional.')
+    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 8.4% y un rendimiento total del 123.7%.')
+
+    st.write('# ¿Por qué Stock market?')
+    st.write('➤Total US stock market ETF - Ticker VTI')
+    tickerData1 = yf.Ticker('VTI')
+    tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf1.Close)
+
+    st.write('1. Exposición al mercado americano, con empresas large-, mid- y small-caps con estilos value y growth.')
+    st.write('2. Hágalo parte fundamental de su cartera para diversificarse en el mercado estadounidense y buscar '
+             'crecimiento a largo plazo.')
+    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 13.8%.')
+    st.write('4. Diversificación por sectores: Technology (25.5%), Consumer Discretionary (16.4%), Industrials (14.2%),'
+             ' Health Care (13.1%), Financials (11.9%), Consumer Staples (5%), Real Estate (3.4%), Utilities (2.9%), '
+             'Energy(2.8%), Telecommunications (2.6%), Basic Materials (2.2%).')
+    st.write('5. Top 10 valores en el ETF: Apple, Microsoft, Amazon, Alphabet, Facebook, Tesla, Berkshire Hathaway, '
+             ' JPMorgan Chase, Johnson & Johnson y Visa ')
+
+    st.text("")
+
+    st.write('➤Real Estate - Ticker VNQ')
+    tickerData6 = yf.Ticker('VNQ')
+    tickerDf6 = tickerData6.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf6.Close)
+
+    st.write('1. Exposición al mercado de real estate americano, con empresas que compran edificios, hoteles y otras '
+             'propiedades.')
+    st.write('2. Hágalo parte fundamental de su cartera para diversificarse y buscar crecimiento a largo plazo.')
+    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 9%.')
+    st.write('4. Top 10 valores en el ETF: Vanguard Real Estate II Index Fund, American Tower Corp., Prologis, Crown '
+             'Castle International Corp, Equinix, Public Storage, Digital Realty Trust, Simon Property Group, SBA '
+             'Communications Corp. y Welltower.')
+
+    st.text("")
+
+    st.write('➤International stock market ETF - Ticker VEU')
+    tickerData7 = yf.Ticker('VEU')
+    tickerDf7 = tickerData7.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf7.Close)
+
+    st.write('1. Exposición al mercado de valores internacional, con empresas large-, mid- y small-caps.')
+    st.write('2. Hágalo parte fundamental de su cartera para diversificarse en mercados desarrollados y en desarrollo, '
+             'excluyendo EE. UU..')
+    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 5.23%.')
+    st.write('4. Diversificación por regiones: Emerging Markets (25.7%), Europe (39.1%), Pacific (28.6%), North America'
+             ' (5.6%), Middle East (0.3%) y Otros (0.7%).')
+    st.write('5. Top 10 valores en el ETF: Taiwan Semiconductor Manufacturing, Tencent Holdings, Alibaba Group Holding,'
+             ' Samsung Electronics, Nestle, ASML Holding, Roche Holding, Toyota Motor Corp., Novartis y LVMH.')
+
+    st.write('# ¿Por qué Bonds?')
+    st.write('➤Bono EEU. UU. largo plazo - Ticker TLT')
+    tickerData2 = yf.Ticker('TLT')
+    tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf2.Close)
+
+    st.write('1. Inversión segura, activo que proporciona estabilidad y ofrece un flujo de ingresos predecible.')
+    st.write('2. Diversifica y reduce la volatilidad del portafolio.')
+    st.write('3. Exposicióna a los Bonos de Tesoro de EE.UU. a largo (20 años) plazo.')
+    st.write('4. Con un rendimiento anual medio en los últimos 10 años del 6.66%.')
+
+    st.text("")
+
+    st.write('➤Bono EEU. UU. medio plazo - Ticker IEI')
+    tickerData3 = yf.Ticker('IEI')
+    tickerDf3 = tickerData3.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf3.Close)
+
+    st.write('1. Inversión segura, activo que proporciona estabilidad y ofrece un flujo de ingresos predecible.')
+    st.write('2. Diversifica y reduce la volatilidad del portafolio.')
+    st.write('3. Exposicióna a los Bonos de Tesoro de EE.UU. a medio (3-7 años) plazo.')
+    st.write('4. Con un rendimiento anual medio en los últimos 10 años del 2.68%.')
+
+    st.write('# ¿Por qué Commodities?')
+    st.write('➤Oro - Ticker GLD')
+    tickerData4 = yf.Ticker('GLD')
+    tickerDf4 = tickerData4.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf4.Close)
+
+    st.write('1. Exposición al mercado del oro.')
+    st.write('3. Diversifica el portafolio.')
+    st.write('3. Buena actuación en épocas de crecimiento económico y/o alta inflación.')
+
+    st.text("")
+
+    st.write('➤Other commodities - Ticker GSG')
+    tickerData5 = yf.Ticker('GSG')
+    tickerDf5 = tickerData5.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf5.Close)
+
+    st.write('1. Exposición a un amplio rango de mercancías, diversificando el portafolio.')
+    st.write('2. Acceso a mercados de energía, metales industriales y preciosos, agricultura y ganadería.')
+    st.write('3. Buena actuación en épocas de crecimiento económico y/o alta inflación.')
+    st.write('4. Compuesto por: Energía (53.64%), Agricultura (21.55%), Metales industriales (12.55%), Ganado (7.04%) y'
+             ' Metales Preciosos (5.22%).')
+
+
+    np.load('stocks_moderados.npy', allow_pickle=True)
+    st.write('# Large & mid caps cluster inversor moderado')
+    st.text("")
+    st.text("")
     df_mod = df[df.Symbol.isin(
         ['ADBE', 'AAP', 'AES', 'A', 'AKAM', 'GOOGL', 'GOOG', 'AMZN', 'ADI', 'ANSS', 'AAPL', 'AZO', 'BLL', 'BA', 'BSX',
          'BR', 'CDNS', 'KMX',
@@ -227,58 +462,210 @@ elif graficos_acciones == 'Inversor moderado':
          'SBUX', 'SNPS', 'TGT', 'TFX', 'TXN', 'TMO', 'TJX', 'TSCO', 'TDG', 'UNP', 'UAL', 'UHS', 'VFC', 'VRSN', 'V',
          'WCG', 'ZTS'])]
     df_mod = df_mod.drop(labels=['SEC filings', 'Headquarters Location', 'Date first added', 'CIK'], axis=1)
+    df_mod.rename(columns={'Symbol': 'Ticker', 'Security': 'Company', 'GICS Sector': 'Sector',
+                           'GICS Sub-Industry': 'Sub-Industry'}, inplace=True)
     df_mod = df_mod.reset_index(drop=True)
     st.write(df_mod)
 
     image = Image.open('Stocks moderados.jpg')
     st.image(image, caption='Evolución portafolio compuesto por una acción de cada empresa del cluster moderado')
 
-    st.write('SP500 ETF - Ticker VOO')
-    tickerData1 = yf.Ticker('VOO')
-    tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-2')
-    st.line_chart(tickerDf1.Close)
-
-    st.write('International market ETF - Ticker IEFA')
-    tickerData2 = yf.Ticker('IEFA')
-    tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-2')
-    st.line_chart(tickerDf2.Close)
-
 else:
 
-    st.write('Portafolio inversor agresivo')
-    labels = 'SP500 ETF', 'International ETF', 'Bonos', 'Cash', 'Large & mid caps', 'Bitcoin'
-    colors = ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99', '#99ffff', '#cca37a']
-    sizes = [30, 15, 15, 5, 25, 10]
-    fig3, ax3 = plt.subplots()
-    ax3.pie(sizes, colors=colors, labels=labels, autopct='%1.1f%%', startangle=90)
-    ax3.axis('equal')
+    st.write('# Portafolio inversor agresivo')
+    st.text("")
+    fig3, ax3 = plt.subplots(figsize=(10, 6))
+
+    size = 0.3
+    vals = np.array([[5, 15, 0, 0], [10, 35, 15, 10], [5, 5, 0, 0]])
+
+    a, b, c = [plt.cm.Blues, plt.cm.Reds, plt.cm.Greens]
+    outer_colors = [a(0.6), b(0.6), c(0.6)]
+    inner_colors = [a(0.5), a(0.4), a(0.3), a(0.2), b(0.5), b(0.4), b(0.3), b(0.2), c(0.5), c(0.4), c(0.3), c(0.2)]
+    labels = 'Bonds', 'Stock market', 'Commodities'
+    labels2 = '10% US Bond intermediate-term (IEI)', '25% US Bond long-term (TLT)', '', '', '10% Real Estate (VNQ)', \
+              '35% US large cap (VTI)', '15% International large cap (VEU)', '10% US small cap (IJT)', \
+              '5% Gold (GLD)', '5% Other commodities (GSG)', '', ''
+
+    ax3.pie(vals.sum(axis=1), radius=1 - size, labels=labels, colors=outer_colors, labeldistance=0.65,
+            wedgeprops=dict(width=size, edgecolor='w'))
+
+    ax3.pie(vals.flatten(), radius=1, labels=labels2, colors=inner_colors,
+            wedgeprops=dict(width=size, edgecolor='w'))
+
+    ax3.set(aspect="equal")
     st.pyplot(fig3)
+
+    st.write('# Rendimiento portfolio')
+
+    tickerData1 = yf.Ticker('VTI')
+    tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData2 = yf.Ticker('TLT')
+    tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData3 = yf.Ticker('IEI')
+    tickerDf3 = tickerData3.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData4 = yf.Ticker('GLD')
+    tickerDf4 = tickerData4.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData5 = yf.Ticker('GSG')
+    tickerDf5 = tickerData5.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData6 = yf.Ticker('VNQ')
+    tickerDf6 = tickerData6.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData7 = yf.Ticker('VEU')
+    tickerDf7 = tickerData7.history(period='1d', start='2011-1-1', end='2021-5-13')
+    tickerData8 = yf.Ticker('IJT')
+    tickerDf8 = tickerData8.history(period='1d', start='2011-1-1', end='2021-5-13')
+
+    cons = tickerDf2['Close']*0.15+tickerDf1['Close']*0.35+tickerDf3['Close']*0.05+tickerDf4['Close']*0.05+\
+           tickerDf5['Close']*0.05+tickerDf6['Close']*0.1+tickerDf7['Close']*0.15+tickerDf8['Close']*0.1
+    fig4, ax4 = plt.subplots(figsize=(10, 6))
+    ax4.plot(cons)
+    st.pyplot(fig4)
+    st.write('1. Portfolio compuesto de un 70% de stocks, 20% de bonos y 10% de commodities.')
+    st.write('2. Portfolio volátil, con alto riesgo pero también con alto rendimiento.')
+    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 9.75% y un rendimiento total del 154.54%.')
+
+    st.write('# ¿Por qué Stock market?')
+    st.write('➤Total US stock market ETF - Ticker VTI')
+    tickerData1 = yf.Ticker('VTI')
+    tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf1.Close)
+
+    st.write('1. Exposición al mercado americano, con empresas large-, mid- y small-caps con estilos value y growth.')
+    st.write('2. Hágalo parte fundamental de su cartera para diversificarse en el mercado estadounidense y buscar '
+             'crecimiento a largo plazo.')
+    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 13.8%.')
+    st.write('4. Diversificación por sectores: Technology (25.5%), Consumer Discretionary (16.4%), Industrials (14.2%),'
+             ' Health Care (13.1%), Financials (11.9%), Consumer Staples (5%), Real Estate (3.4%), Utilities (2.9%), '
+             'Energy(2.8%), Telecommunications (2.6%), Basic Materials (2.2%).')
+    st.write('5. Top 10 valores en el ETF: Apple, Microsoft, Amazon, Alphabet, Facebook, Tesla, Berkshire Hathaway, '
+             ' JPMorgan Chase, Johnson & Johnson y Visa ')
+
+    st.text("")
+
+    st.write('➤Real Estate - Ticker VNQ')
+    tickerData6 = yf.Ticker('VNQ')
+    tickerDf6 = tickerData6.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf6.Close)
+
+    st.write('1. Exposición al mercado de real estate americano, con empresas que compran edificios, hoteles y otras '
+             'propiedades.')
+    st.write('2. Hágalo parte fundamental de su cartera para diversificarse y buscar crecimiento a largo plazo.')
+    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 9%.')
+    st.write('4. Top 10 valores en el ETF: Vanguard Real Estate II Index Fund, American Tower Corp., Prologis, Crown '
+             'Castle International Corp, Equinix, Public Storage, Digital Realty Trust, Simon Property Group, SBA '
+             'Communications Corp. y Welltower.')
+
+    st.text("")
+
+    st.write('➤International stock market ETF - Ticker VEU')
+    tickerData7 = yf.Ticker('VEU')
+    tickerDf7 = tickerData7.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf7.Close)
+
+    st.write('1. Exposición al mercado de valores internacional, con empresas large-, mid- y small-caps.')
+    st.write('2. Hágalo parte fundamental de su cartera para diversificarse en mercados desarrollados y en desarrollo, '
+             'excluyendo EE. UU..')
+    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 5.23%.')
+    st.write('4. Diversificación por regiones: Emerging Markets (25.7%), Europe (39.1%), Pacific (28.6%), North America'
+             ' (5.6%), Middle East (0.3%) y Otros (0.7%).')
+    st.write('5. Top 10 valores en el ETF: Taiwan Semiconductor Manufacturing, Tencent Holdings, Alibaba Group Holding,'
+             ' Samsung Electronics, Nestle, ASML Holding, Roche Holding, Toyota Motor Corp., Novartis y LVMH.')
+
+    st.text("")
+
+    st.write('➤US small cap ETF - Ticker IJT')
+    tickerData8 = yf.Ticker('IJT')
+    tickerDf8 = tickerData8.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf8.Close)
+
+    st.write('1. Exposición a pequeñas empresas de EE. UU. cuyas ganancias se espera que aumenten a una tasa superior '
+             'al promedio en comparación con el mercado.')
+    st.write('2. Hágalo parte fundamental de su cartera para diversificarse en acciones estadounidenses y para orientar'
+             ' su cartera hacia acciones "growth".')
+    st.write('3. Con un rendimiento anual medio en los últimos 10 años del 13.55%.')
+    st.write('4. Diversificación por sector: Industrial (18.67%), Tecnología (18.01%), Consumer discretionary (17.01%),'
+             ' Health Care (16.74%), Financieros (9.97%), Inmobiliario (5.45%), Productos básicos de consumo (4.7%), '
+             'Materiales (4.17%), Energía (2.14%), Comunicación (2.14%) y Servivios (1%).')
+
+    st.write('# ¿Por qué Bonds?')
+    st.write('➤Bono EEU. UU. largo plazo - Ticker TLT')
+    tickerData2 = yf.Ticker('TLT')
+    tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf2.Close)
+
+    st.write('1. Inversión segura, activo que proporciona estabilidad y ofrece un flujo de ingresos predecible.')
+    st.write('2. Diversifica y reduce la volatilidad del portafolio.')
+    st.write('3. Exposicióna a los Bonos de Tesoro de EE.UU. a largo (20 años) plazo.')
+    st.write('4. Con un rendimiento anual medio en los últimos 10 años del 6.66%.')
+
+    st.text("")
+
+    st.write('➤Bono EEU. UU. medio plazo - Ticker IEI')
+    tickerData3 = yf.Ticker('IEI')
+    tickerDf3 = tickerData3.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf3.Close)
+
+    st.write('1. Inversión segura, activo que proporciona estabilidad y ofrece un flujo de ingresos predecible.')
+    st.write('2. Diversifica y reduce la volatilidad del portafolio.')
+    st.write('3. Exposicióna a los Bonos de Tesoro de EE.UU. a medio (3-7 años) plazo.')
+    st.write('4. Con un rendimiento anual medio en los últimos 10 años del 2.68%.')
+
+    st.write('# ¿Por qué Commodities?')
+    st.write('➤Oro - Ticker GLD')
+    tickerData4 = yf.Ticker('GLD')
+    tickerDf4 = tickerData4.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf4.Close)
+
+    st.write('1. Exposición al mercado del oro.')
+    st.write('3. Diversifica el portafolio.')
+    st.write('3. Buena actuación en épocas de crecimiento económico y/o alta inflación.')
+
+    st.text("")
+
+    st.write('➤Other commodities - Ticker GSG')
+    tickerData5 = yf.Ticker('GSG')
+    tickerDf5 = tickerData5.history(period='1d', start='2011-1-1', end='2021-5-13')
+    st.line_chart(tickerDf5.Close)
+
+    st.write('1. Exposición a un amplio rango de mercancías, diversificando el portafolio.')
+    st.write('2. Acceso a mercados de energía, metales industriales y preciosos, agricultura y ganadería.')
+    st.write('3. Buena actuación en épocas de crecimiento económico y/o alta inflación.')
+    st.write('4. Compuesto por: Energía (53.64%), Agricultura (21.55%), Metales industriales (12.55%), Ganado (7.04%) y'
+             ' Metales Preciosos (5.22%).')
+
+    st.write('# ¿Se puede añadir BTC a mi portfolio?')
+    st.write('Bitcoin - Ticker BTC')
+    tickerData9 = yf.Ticker('BTC-USD')
+    tickerDf9 = tickerData9.history(period='1d', start='2017-1-1', end='2021-5-13')
+    st.line_chart(tickerDf9.Close)
+
+    image1 = Image.open('newplot.png')
+    st.image(image1, caption='Sharpe Ratio (ROI / Volatilidad) de diferentes activos')
+
+    image2 = Image.open('newplot (1).png')
+    st.image(image2, caption='Volatilidad Bitcoin vs otros activos')
+
+    st.write(' Muy recomendable por estas razones:')
+    st.write('1. Diversificación, exposición al mercado de las criptomonedas.')
+    st.write('2. Alta rentabilidad, con una mayor adopción cada año y con una alta volatilidad pero descendente.')
+    st.write('3. Activo deflacionario contra el sistema monetario inflacionario actual, el 24% del total de dólares en '
+             'circulación se crearon en 2020.')
+
 
     np.load('stocks_agresivos.npy', allow_pickle=True)
 
-    st.write('Large & mid caps cluster inversor agresivo')
+    st.write('# Large & mid caps cluster inversor agresivo')
+    st.text("")
+    st.text("")
     df_agr = df[df.Symbol.isin(
         ['ABMD', 'AMD', 'ALGN', 'ANET', 'ADSK', 'CMG', 'HES', 'ILMN', 'LRCX', 'MU', 'NFLX', 'NVDA', 'QRVO', 'STX',
          'SYMC', 'TTWO',
          'TWTR', 'TRIP', 'ULTA', 'UAA', 'UA', 'XLNX'])]
     df_agr = df_agr.drop(['SEC filings', 'Headquarters Location', 'Date first added', 'CIK'], axis=1)
+    df_agr.rename(columns={'Symbol': 'Ticker', 'Security': 'Company', 'GICS Sector': 'Sector',
+                           'GICS Sub-Industry': 'Sub-Industry'}, inplace=True)
     df_agr = df_agr.reset_index(drop=True)
     st.write(df_agr)
 
     image = Image.open('Stocks agresivos.jpg')
     st.image(image, caption='Evolución portafolio compuesto por una acción de cada empresa del cluster agresivo')
-
-    st.write('SP500 ETF - Ticker VOO')
-    tickerData1 = yf.Ticker('VOO')
-    tickerDf1 = tickerData1.history(period='1d', start='2011-1-1', end='2021-5-2')
-    st.line_chart(tickerDf1.Close)
-
-    st.write('International market ETF - Ticker IEFA')
-    tickerData2 = yf.Ticker('IEFA')
-    tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-2')
-    st.line_chart(tickerDf2.Close)
-
-    st.write('Bitcoin - Ticker BTC')
-    tickerData3 = yf.Ticker('BTC-USD')
-    tickerDf3 = tickerData3.history(period='1d', start='2017-1-1', end='2021-5-2')
-    st.line_chart(tickerDf3.Close)

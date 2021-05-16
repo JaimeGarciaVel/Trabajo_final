@@ -27,7 +27,7 @@ Patrimonio = st.select_slider('Patrimonio neto', options=['<5.000 €', 'Entre 5
                                                           'Entre 75.000 € y 180.000 €',
                                                           'Entre 180.000 € y 370.000 €',
                                                           'Entre 370.000 € y 1.350.000 €'])
-Renta = st.select_slider('Renta anual', options=['<900 €', 'Entre 900 € y 1.350 €', 'Entre 1.350 € y 1.700 €',
+Renta = st.select_slider('Renta mensual', options=['<900 €', 'Entre 900 € y 1.350 €', 'Entre 1.350 € y 1.700 €',
                                                  'Entre 1.700 € y 2.400 €', 'Entre 2.400 € y 3.500 €', '>3.500 €'])
 
 if Sexo == 'Hombre':
