@@ -311,7 +311,7 @@ elif graficos_acciones == 'Inversor moderado':
     a, b, c = [plt.cm.Blues, plt.cm.Reds, plt.cm.Greens]
     outer_colors = [a(0.6), b(0.6), c(0.6)]
     inner_colors = [a(0.5), a(0.4), a(0.3), b(0.5), b(0.4), b(0.3), c(0.5), c(0.4)]
-    labels = 'Bonds', 'Stock market', 'Commodities'
+    labels = 'Bonos', 'Stock market', 'Commodities'
     labels2 = '10% US Bond intermediate-term (IEI)', '25% US Bond long-term (TLT)', '', '10% Real Estate (VNQ)', \
               '30% US large cap (VTI)', '15% International large cap (VEU)', '5% Gold (GLD)', \
               '5% Other commodities (GSG)', ''
@@ -399,7 +399,7 @@ elif graficos_acciones == 'Inversor moderado':
     st.write('5. Top 10 valores en el ETF: Taiwan Semiconductor Manufacturing, Tencent Holdings, Alibaba Group Holding,'
              ' Samsung Electronics, Nestle, ASML Holding, Roche Holding, Toyota Motor Corp., Novartis y LVMH.')
 
-    st.write('# ¿Por qué Bonds?')
+    st.write('# ¿Por qué Bonos?')
     st.write('➤Bono EEU. UU. largo plazo - Ticker TLT')
     tickerData2 = yf.Ticker('TLT')
     tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-13')
@@ -407,7 +407,7 @@ elif graficos_acciones == 'Inversor moderado':
 
     st.write('1. Inversión segura, activo que proporciona estabilidad y ofrece un flujo de ingresos predecible.')
     st.write('2. Diversifica y reduce la volatilidad del portafolio.')
-    st.write('3. Exposicióna a los Bonos de Tesoro de EE.UU. a largo (20 años) plazo.')
+    st.write('3. Exposición a los Bonos de Tesoro de EE.UU. a largo (20 años) plazo.')
     st.write('4. Con un rendimiento anual medio en los últimos 10 años del 6.66%.')
 
     st.text("")
@@ -419,7 +419,7 @@ elif graficos_acciones == 'Inversor moderado':
 
     st.write('1. Inversión segura, activo que proporciona estabilidad y ofrece un flujo de ingresos predecible.')
     st.write('2. Diversifica y reduce la volatilidad del portafolio.')
-    st.write('3. Exposicióna a los Bonos de Tesoro de EE.UU. a medio (3-7 años) plazo.')
+    st.write('3. Exposición a los Bonos de Tesoro de EE.UU. a medio (3-7 años) plazo.')
     st.write('4. Con un rendimiento anual medio en los últimos 10 años del 2.68%.')
 
     st.write('# ¿Por qué Commodities?')
@@ -482,7 +482,7 @@ else:
     a, b, c = [plt.cm.Blues, plt.cm.Reds, plt.cm.Greens]
     outer_colors = [a(0.6), b(0.6), c(0.6)]
     inner_colors = [a(0.5), a(0.4), a(0.3), a(0.2), b(0.5), b(0.4), b(0.3), b(0.2), c(0.5), c(0.4), c(0.3), c(0.2)]
-    labels = 'Bonds', 'Stock market', 'Commodities'
+    labels = 'Bonos', 'Stock market', 'Commodities'
     labels2 = '10% US Bond intermediate-term (IEI)', '25% US Bond long-term (TLT)', '', '', '10% Real Estate (VNQ)', \
               '35% US large cap (VTI)', '15% International large cap (VEU)', '10% US small cap (IJT)', \
               '5% Gold (GLD)', '5% Other commodities (GSG)', '', ''
@@ -587,7 +587,7 @@ else:
              ' Health Care (16.74%), Financieros (9.97%), Inmobiliario (5.45%), Productos básicos de consumo (4.7%), '
              'Materiales (4.17%), Energía (2.14%), Comunicación (2.14%) y Servivios (1%).')
 
-    st.write('# ¿Por qué Bonds?')
+    st.write('# ¿Por qué Bonos?')
     st.write('➤Bono EEU. UU. largo plazo - Ticker TLT')
     tickerData2 = yf.Ticker('TLT')
     tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-13')
@@ -595,7 +595,7 @@ else:
 
     st.write('1. Inversión segura, activo que proporciona estabilidad y ofrece un flujo de ingresos predecible.')
     st.write('2. Diversifica y reduce la volatilidad del portafolio.')
-    st.write('3. Exposicióna a los Bonos de Tesoro de EE.UU. a largo (20 años) plazo.')
+    st.write('3. Exposición a los Bonos de Tesoro de EE.UU. a largo (20 años) plazo.')
     st.write('4. Con un rendimiento anual medio en los últimos 10 años del 6.66%.')
 
     st.text("")
@@ -607,7 +607,7 @@ else:
 
     st.write('1. Inversión segura, activo que proporciona estabilidad y ofrece un flujo de ingresos predecible.')
     st.write('2. Diversifica y reduce la volatilidad del portafolio.')
-    st.write('3. Exposicióna a los Bonos de Tesoro de EE.UU. a medio (3-7 años) plazo.')
+    st.write('3. Exposición a los Bonos de Tesoro de EE.UU. a medio (3-7 años) plazo.')
     st.write('4. Con un rendimiento anual medio en los últimos 10 años del 2.68%.')
 
     st.write('# ¿Por qué Commodities?')
