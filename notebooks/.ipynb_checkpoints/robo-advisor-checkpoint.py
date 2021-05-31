@@ -171,7 +171,7 @@ if graficos_acciones == 'Inversor conservador':
     cmap = plt.get_cmap("tab20c")
     outer_colors = cmap(np.arange(3) * 4)
     inner_colors = cmap([1, 2, 5, 6, 9, 10])
-    labels = 'Bonds', 'Stock market', 'Commodities'
+    labels = 'Bonos', 'Stock market', 'Commodities'
     labels2 = '15% US Bond intermediate-term (IEI)', '40% US Bond long-term (TLT)', '30% US large cap (VTI)', '',\
               '7,5% Gold (GLD)', '7,5% Other commodities (GSG)'
 
@@ -223,7 +223,7 @@ if graficos_acciones == 'Inversor conservador':
     st.write('5. Top 10 valores en el ETF: Apple, Microsoft, Amazon, Alphabet, Facebook, Tesla, Berkshire Hathaway,'
              ' JPMorgan Chase, Johnson & Johnson y Visa.')
 
-    st.write('# ¿Por qué Bonds?')
+    st.write('# ¿Por qué Bonos?')
     st.write('➤Bono EEU. UU. largo plazo - Ticker TLT')
     tickerData2 = yf.Ticker('TLT')
     tickerDf2 = tickerData2.history(period='1d', start='2011-1-1', end='2021-5-13')
