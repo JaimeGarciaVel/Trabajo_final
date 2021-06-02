@@ -483,7 +483,7 @@ else:
     outer_colors = [a(0.6), b(0.6), c(0.6)]
     inner_colors = [a(0.5), a(0.4), a(0.3), a(0.2), b(0.5), b(0.4), b(0.3), b(0.2), c(0.5), c(0.4), c(0.3), c(0.2)]
     labels = 'Bonos', 'Stock market', 'Commodities'
-    labels2 = '10% US Bond intermediate-term (IEI)', '25% US Bond long-term (TLT)', '', '', '10% Real Estate (VNQ)', \
+    labels2 = '10% US Bond intermediate-term (IEI)', '15% US Bond long-term (TLT)', '', '', '10% Real Estate (VNQ)', \
               '35% US large cap (VTI)', '15% International large cap (VEU)', '10% US small cap (IJT)', \
               '5% Gold (GLD)', '5% Other commodities (GSG)', '', ''
 
