@@ -149,15 +149,6 @@ graficos_acciones = st.selectbox(
 )
 
 
-def load_data():
-    url = 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
-    html = pd.read_html(url, header=0)
-    df = html[0]
-    return df
-
-
-df = load_data()
-
 if graficos_acciones == 'Inversor conservador':
 
     st.write('# Portafolio inversor conservador')
@@ -269,35 +260,6 @@ if graficos_acciones == 'Inversor conservador':
     st.write('4. Compuesto por: Energía (53.64%), Agricultura (21.55%), Metales industriales (12.55%), Ganado (7.04%) y'
              ' Metales Preciosos (5.22%).')
 
-    np.load('stocks_conservadores.npy', allow_pickle=True)
-
-    st.write('# Large & mid caps cluster inversor conservador')
-    st.text("")
-    st.text("")
-    st.text("")
-    df_con = df[df.Symbol.isin(
-        ['ABT', 'ACN', 'AFL', 'APD', 'ARE', 'ALLE', 'LNT', 'ALL', 'AEE', 'AEP', 'AXP', 'AMT', 'AWK', 'AME', 'AMGN',
-         'APH', 'AON', 'AIV', 'ADM', 'AJG',
-         'AIZ', 'ATO', 'ADP', 'AVB', 'BAX', 'BBT', 'BDX', 'BXP', 'CBRE', 'CNP', 'CB', 'CINF', 'CTXS', 'CME', 'CMS',
-         'KO', 'CMCSA', 'ED', 'COST', 'CCI',
-         'DHR', 'DRI', 'DLR', 'D', 'DOV', 'DTE', 'DUK', 'DRE', 'ECL', 'ETR', 'EFX', 'EQIX', 'EQR', 'ESS', 'EVRG', 'ES',
-         'RE', 'EXC', 'EXPD', 'EXR', 'FRT',
-         'FIS', 'FE', 'FRC', 'GPC', 'GL', 'HIG', 'HCP', 'HSIC', 'HSY', 'HLT', 'HOLX', 'HD', 'HON', 'HRL', 'IEX', 'INFO',
-         'IR', 'ICE', 'JKHY', 'JCI', 'JPM',
-         'KMB', 'KIM', 'KMI', 'LDOS', 'LLY', 'LIN', 'LMT', 'L', 'MMC', 'MCD', 'MDT', 'MRK', 'MAA', 'MDLZ', 'NDAQ',
-         'NEE', 'NI', 'OKE', 'ORCL', 'PAYX', 'PEP',
-         'PFE', 'PNW', 'PPL', 'PG', 'PLD', 'PEG', 'PSA', 'DGX', 'RTN', 'O', 'REG', 'RSG', 'ROL', 'ROP', 'SBAC', 'SRE',
-         'SHW', 'SO', 'SYK', 'SYY', 'TMUS', 'TRV',
-         'UDR', 'USB', 'UTX', 'VTR', 'VRSK', 'VZ', 'WMT', 'DIS', 'WM', 'WEC', 'WELL', 'WU', 'WLTW', 'XEL', 'XYL', 'YUM',
-         'ZBH'])]
-    df_con = df_con.drop(labels=['SEC filings', 'Headquarters Location', 'Date first added', 'CIK'], axis=1)
-    df_con.rename(columns={'Symbol': 'Ticker', 'Security': 'Company', 'GICS Sector': 'Sector',
-                           'GICS Sub-Industry': 'Sub-Industry'}, inplace=True)
-    df_con = df_con.reset_index(drop=True)
-    st.write(df_con)
-
-    image = Image.open('Stocks conservadores.jpg')
-    st.image(image, caption='Evolución portafolio compuesto por una acción de cada empresa del cluster conservador')
 
 elif graficos_acciones == 'Inversor moderado':
 
@@ -445,30 +407,6 @@ elif graficos_acciones == 'Inversor moderado':
     st.write('4. Compuesto por: Energía (53.64%), Agricultura (21.55%), Metales industriales (12.55%), Ganado (7.04%) y'
              ' Metales Preciosos (5.22%).')
 
-
-    np.load('stocks_moderados.npy', allow_pickle=True)
-    st.write('# Large & mid caps cluster inversor moderado')
-    st.text("")
-    st.text("")
-    df_mod = df[df.Symbol.isin(
-        ['ADBE', 'AAP', 'AES', 'A', 'AKAM', 'GOOGL', 'GOOG', 'AMZN', 'ADI', 'ANSS', 'AAPL', 'AZO', 'BLL', 'BA', 'BSX',
-         'BR', 'CDNS', 'KMX',
-         'CDW', 'CE', 'CHTR', 'CHD', 'CTAS', 'CSCO', 'COO', 'CPRT', 'CSX', 'DG', 'EW', 'EL', 'EXPE', 'FAST', 'FISV',
-         'FLT', 'FLIR', 'FTNT',
-         'GRMN', 'IT', 'GPN', 'GWW', 'HAS', 'HCA', 'IDXX', 'INTU', 'ISRG', 'IQV', 'JEC', 'KSU', 'KEYS', 'KLAC', 'LHX',
-         'LW', 'LOW', 'MKTX',
-         'MLM', 'MA', 'MKC', 'MSFT', 'MCO', 'MSI', 'MSCI', 'NKE', 'NSC', 'NOC', 'NRG', 'ORLY', 'PYPL', 'PGR', 'RMD',
-         'ROST', 'CRM', 'SPGI',
-         'SBUX', 'SNPS', 'TGT', 'TFX', 'TXN', 'TMO', 'TJX', 'TSCO', 'TDG', 'UNP', 'UAL', 'UHS', 'VFC', 'VRSN', 'V',
-         'WCG', 'ZTS'])]
-    df_mod = df_mod.drop(labels=['SEC filings', 'Headquarters Location', 'Date first added', 'CIK'], axis=1)
-    df_mod.rename(columns={'Symbol': 'Ticker', 'Security': 'Company', 'GICS Sector': 'Sector',
-                           'GICS Sub-Industry': 'Sub-Industry'}, inplace=True)
-    df_mod = df_mod.reset_index(drop=True)
-    st.write(df_mod)
-
-    image = Image.open('Stocks moderados.jpg')
-    st.image(image, caption='Evolución portafolio compuesto por una acción de cada empresa del cluster moderado')
 
 else:
 
@@ -652,20 +590,3 @@ else:
              'circulación se crearon en 2020.')
 
 
-    np.load('stocks_agresivos.npy', allow_pickle=True)
-
-    st.write('# Large & mid caps cluster inversor agresivo')
-    st.text("")
-    st.text("")
-    df_agr = df[df.Symbol.isin(
-        ['ABMD', 'AMD', 'ALGN', 'ANET', 'ADSK', 'CMG', 'HES', 'ILMN', 'LRCX', 'MU', 'NFLX', 'NVDA', 'QRVO', 'STX',
-         'SYMC', 'TTWO',
-         'TWTR', 'TRIP', 'ULTA', 'UAA', 'UA', 'XLNX'])]
-    df_agr = df_agr.drop(['SEC filings', 'Headquarters Location', 'Date first added', 'CIK'], axis=1)
-    df_agr.rename(columns={'Symbol': 'Ticker', 'Security': 'Company', 'GICS Sector': 'Sector',
-                           'GICS Sub-Industry': 'Sub-Industry'}, inplace=True)
-    df_agr = df_agr.reset_index(drop=True)
-    st.write(df_agr)
-
-    image = Image.open('Stocks agresivos.jpg')
-    st.image(image, caption='Evolución portafolio compuesto por una acción de cada empresa del cluster agresivo')
