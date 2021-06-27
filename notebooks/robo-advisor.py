@@ -8,16 +8,20 @@ import yfinance as yf
 
 st.set_page_config(layout="centered")
 
-st.title('# Robo-advisor')
+st.write('# Robo-advisor')
 
 tipo_inversor = st.selectbox(
-    '# ¿Conoce ya su tipo de inversor?',
-    ('Sí.', 'No.')
+    '¿Conoce ya su tipo de inversor?',
+    (' ','Sí.', 'No.')
 )
 
-if tipo_inversor == 'Sí.':
+if tipo_inversor == ' ':
+    st.write('')
+    
+elif tipo_inversor == 'Sí.':
+
     graficos_acciones = st.selectbox(
-        '# Selecciona el tipo de inversor que eres para ver en qué activos invertir',
+        'Selecciona el tipo de inversor que eres para ver en qué activos invertir',
         ('Inversor conservador', 'Inversor moderado', 'Inversor agresivo')
     )
 
@@ -634,7 +638,7 @@ else:
     st.text("")
     st.write('# Paso 2:')
     graficos_acciones = st.selectbox(
-        '# Selecciona el tipo de inversor que eres para ver en qué activos invertir',
+        'Selecciona el tipo de inversor que eres para ver en qué activos invertir',
         ('Inversor conservador', 'Inversor moderado', 'Inversor agresivo')
     )
 
