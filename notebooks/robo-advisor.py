@@ -11,13 +11,13 @@ st.set_page_config(layout="centered")
 st.write('# Robo-advisor')
 
 tipo_inversor = st.selectbox(
-    '¿Conoce ya su tipo de inversor?',
+    '¿Conoce ya su perfil de inversor?',
     (' ','Sí.', 'No.')
 )
 
 if tipo_inversor == ' ':
     st.write('')
-    
+
 elif tipo_inversor == 'Sí.':
 
     graficos_acciones = st.selectbox(
